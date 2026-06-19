@@ -1,1 +1,1 @@
-require("vulkan-colors").load()
+require("vulkanite").load()

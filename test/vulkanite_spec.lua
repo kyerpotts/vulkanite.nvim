@@ -145,6 +145,25 @@ local function run()
 	for _, group in ipairs(integration_probe_groups) do
 		assert_set(group, group .. " exists with plugins.all")
 	end
+
+	reset_vulkanite()
+	package.loaded["vulkan-colors"] = nil
+	local lualine_theme = require("lualine.themes.vulkanite")
+	for _, mode in ipairs({ "normal", "insert", "command", "visual", "replace", "terminal" }) do
+		assert_truthy(lualine_theme[mode].a.bg, "lualine " .. mode .. ".a.bg set")
+	end
+	assert_truthy(lualine_theme.inactive.a.fg, "lualine inactive.a.fg set")
+
+	reset_vulkanite()
+	package.loaded["vulkan-colors"] = nil
+	require("vulkanite").load()
+	assert_eq(package.loaded["vulkan-colors"], nil, "vulkan-colors module stays unloaded after loading vulkanite")
+
+	reset_vulkanite()
+	package.loaded["vulkan-colors"] = nil
+	vim.cmd.colorscheme("vulkan-colors")
+	assert_eq(vim.g.colors_name, "vulkanite", "compat colorscheme reports vulkanite")
+	assert_eq(package.loaded["vulkan-colors"], nil, "compat colorscheme does not load vulkan-colors module")
 end
 
 local ok, err = xpcall(run, debug.traceback)
