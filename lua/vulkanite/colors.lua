@@ -3,6 +3,8 @@ local palette = require("vulkanite.palette")
 local M = {}
 
 function M.setup(opts)
+  opts = require("vulkanite.config").extend(opts)
+
   local p = palette.get()
   local colors = {
     bg = p.bg,

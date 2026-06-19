@@ -109,19 +109,19 @@ require("vulkanite").setup({
   plugins = {
     auto = true,
     all = false,
-    gitsigns = true,
-    telescope = true,
-    cmp = true,
-    blink = true,
-    which_key = true,
-    lazy = true,
-    neo_tree = true,
-    nvim_tree = true,
-    noice = true,
-    notify = true,
-    snacks = true,
-    treesitter_context = true,
-    render_markdown = true,
+    gitsigns = "auto",
+    telescope = "auto",
+    cmp = "auto",
+    blink = "auto",
+    which_key = "auto",
+    lazy = "auto",
+    neo_tree = "auto",
+    nvim_tree = "auto",
+    noice = "auto",
+    notify = "auto",
+    snacks = "auto",
+    treesitter_context = "auto",
+    render_markdown = "auto",
   },
   on_colors = function() end,
   on_highlights = function() end,
@@ -130,7 +130,7 @@ require("vulkanite").setup({
 
 ## Supported integrations
 
-Bundled MVP integrations are enabled by default. Set a plugin key to `false` to disable that integration, set `plugins.auto = false` to skip package-manager detection, or set `plugins.all = true` to force every bundled integration on.
+Bundled MVP integrations default to `"auto"`: Vulkanite enables them when `lazy.nvim` or `vim.pack` reports a matching installed plugin. Set a plugin key to `true` or `false` to override detection, set `plugins.auto = false` to skip package-manager detection, or set `plugins.all = true` to force every bundled integration on.
 
 | Plugin | Key | Note |
 | --- | --- | --- |

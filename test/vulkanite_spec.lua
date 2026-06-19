@@ -116,6 +116,9 @@ local function run()
   assert_eq(raw_normal.bg, nil, "raw transparent Normal background is omitted before apply")
   assert_eq(groups.Normal.bg, nil, "transparent Normal background is omitted before apply")
 
+  local colors_without_callbacks = require("vulkanite.colors").setup({})
+  assert_eq(colors_without_callbacks.error, "#e05f64", "colors.setup defaults missing callbacks")
+
   reset_vulkanite()
   require("vulkanite").load({
     on_colors = function(colors)
@@ -155,6 +158,10 @@ local function run()
   package.loaded["lazy.core.config"] = old_lazy_config
   package.loaded.lazy = old_lazy
   assert_unset("SnacksPickerMatch", "manual snacks false beats lazy.nvim auto-detection")
+
+  reset_vulkanite()
+  require("vulkanite").load({ plugins = { auto = true, all = false } })
+  assert_unset("SnacksPickerMatch", "auto mode leaves undetected snacks unset")
 
   reset_vulkanite()
   local old_pack = vim.pack
