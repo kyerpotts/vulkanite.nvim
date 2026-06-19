@@ -9,9 +9,13 @@ Vulkanite is a modern Neovim colorscheme.
 - Neovim with true color support.
 - A plugin manager, or native `vim.pack` on modern Neovim versions where it is available.
 
-## Installation with lazy.nvim
+## Installation with LazyVim / lazy.nvim
 
-For LazyVim-style setups, place this spec in a file such as `lua/plugins/vulkanite.lua`:
+LazyVim users should let LazyVim own the final colorscheme load. Calling
+`vim.cmd.colorscheme("vulkanite")` only from the colorscheme plugin spec can be
+overwritten later by LazyVim's configured default theme.
+
+Place this in `lua/plugins/vulkanite.lua`:
 
 ```lua
 return {
@@ -19,27 +23,37 @@ return {
     "squidmilk/vulkanite.nvim",
     lazy = false,
     priority = 1000,
+    main = "vulkanite",
     opts = {},
-    config = function(_, opts)
-      require("vulkanite").setup(opts)
-      vim.cmd.colorscheme("vulkanite")
-    end,
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "vulkanite",
+    },
   },
 }
 ```
 
-If you keep plugin specs in a single list, use the inner table directly:
+For visual QA, force every bundled integration on while testing:
 
 ```lua
-{
-  "squidmilk/vulkanite.nvim",
-  lazy = false,
-  priority = 1000,
-  opts = {},
-  config = function(_, opts)
-    require("vulkanite").setup(opts)
-    vim.cmd.colorscheme("vulkanite")
-  end,
+return {
+  {
+    "squidmilk/vulkanite.nvim",
+    lazy = false,
+    priority = 1000,
+    main = "vulkanite",
+    opts = {
+      plugins = { all = true },
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "vulkanite",
+    },
+  },
 }
 ```
 
@@ -56,21 +70,29 @@ vim.cmd.colorscheme("vulkanite")
 
 ## Local development install
 
+For LazyVim local testing, use the worktree or checkout path and still set
+`LazyVim/LazyVim.opts.colorscheme`:
+
 ```lua
-{
-  dir = "/path/to/vulkanite.nvim",
-  name = "vulkanite.nvim",
-  lazy = false,
-  priority = 1000,
-  opts = {},
-  config = function(_, opts)
-    require("vulkanite").setup(opts)
-    vim.cmd.colorscheme("vulkanite")
-  end,
+return {
+  {
+    dir = "/path/to/vulkanite.nvim",
+    name = "vulkanite.nvim",
+    lazy = false,
+    priority = 1000,
+    main = "vulkanite",
+    opts = {
+      plugins = { all = true },
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "vulkanite",
+    },
+  },
 }
 ```
-
-Or replace `dir` with your local checkout path.
 
 ## Usage
 
