@@ -13,7 +13,7 @@ function M.get(colors, opts)
     LazyProgressTodo = { fg = colors.gutter },
     LazyReasonPlugin = { fg = colors.purple },
     LazyProp = { fg = colors.teal },
-    LazyValue = { fg = colors.warn },
+    LazyValue = { fg = colors.value },
     LazyUrl = { link = "Underlined" },
   }
 end

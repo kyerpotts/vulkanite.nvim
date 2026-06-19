@@ -106,33 +106,25 @@ local function run()
     0x0f1416,
     "NormalFloat uses original base01"
   )
-  assert_eq(
-    vim.api.nvim_get_hl(0, { name = "Statement" }).fg,
-    0x37868b,
-    "Statement uses original base0E"
-  )
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Statement" }).fg, 0xe05f64, "Statement uses base08")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Keyword" }).fg, 0x37868b, "Keyword uses base0E")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Operator" }).fg, 0x37868b, "Operator uses base0E")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Type" }).fg, 0x8fe0fa, "Type uses base0A")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Label" }).fg, 0x8fe0fa, "Label uses base0A")
   local palette = require("vulkanite.palette").get()
   assert_eq(palette.base0E, "#37868b", "base0E stays original teal")
   assert_eq(palette.orange, "#e08a64", "extended orange accent exists")
   assert_eq(palette.purple, "#7b78aa", "extended purple accent exists")
-  assert_eq(
-    vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg,
-    0xe08a64,
-    "WarningMsg uses extended orange"
-  )
+  assert_eq(vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg, 0xe05f64, "WarningMsg uses base08")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" }).fg,
-    0xe08a64,
-    "DiagnosticWarn uses extended orange"
+    0x37868b,
+    "DiagnosticWarn uses base0E"
   )
-  assert_eq(
-    vim.api.nvim_get_hl(0, { name = "Constant" }).fg,
-    0xe05f64,
-    "Constant stays original red"
-  )
-  assert_eq(vim.api.nvim_get_hl(0, { name = "Number" }).fg, 0xe05f64, "Number stays original red")
-  assert_eq(vim.api.nvim_get_hl(0, { name = "Boolean" }).fg, 0xe05f64, "Boolean stays original red")
-  assert_eq(vim.api.nvim_get_hl(0, { name = "Float" }).fg, 0xe05f64, "Float stays original red")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Constant" }).fg, 0xe05f64, "Constant uses base09")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Number" }).fg, 0xe05f64, "Number uses base09")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Boolean" }).fg, 0xe05f64, "Boolean uses base09")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Float" }).fg, 0xe05f64, "Float uses base09")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "LspKindConstant" }).fg,
     0xe05f64,
@@ -140,8 +132,8 @@ local function run()
   )
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "@lsp.type.decorator" }).fg,
-    0x7b78aa,
-    "decorators use extended purple"
+    0x37868b,
+    "decorators use base0F"
   )
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "LspKindSnippet" }).fg,
@@ -243,6 +235,17 @@ local function run()
   for _, group in ipairs(integration_probe_groups) do
     assert_set(group, group .. " exists with plugins.all")
   end
+  assert_eq(vim.api.nvim_get_hl(0, { name = "LazyValue" }).fg, 0xe05f64, "LazyValue uses value red")
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "LspKindUnit" }).fg,
+    0xe05f64,
+    "unit kind uses value red"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "LspKindColor" }).fg,
+    0xe05f64,
+    "color kind uses value red"
+  )
 
   reset_vulkanite()
   package.loaded["vulkan-colors"] = nil
