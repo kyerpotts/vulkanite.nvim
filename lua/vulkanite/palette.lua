@@ -16,6 +16,8 @@ local palette = {
   base0E = "#37868b",
   base0F = "#37868b",
   comment = "#8e969a",
+  orange = "#e08a64",
+  purple = "#7b78aa",
 }
 
 local aliases = {
@@ -27,13 +29,13 @@ local aliases = {
   comment = palette.comment,
   gutter = palette.base03,
   red = palette.base08,
-  orange = palette.base09,
+  orange = palette.orange,
   yellow = palette.base0A,
   green = palette.base0B,
   cyan = palette.base0C,
   blue = palette.base0D,
   teal = palette.base0E,
-  purple = palette.base0E,
+  purple = palette.purple,
 }
 
 local M = {}

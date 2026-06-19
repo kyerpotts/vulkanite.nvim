@@ -44,7 +44,7 @@ function M.kinds(ret, pattern, colors)
     Value = colors.warn,
     Enum = colors.teal,
     Keyword = colors.purple,
-    Snippet = colors.ok,
+    Snippet = colors.purple,
     Color = colors.warn,
     File = colors.accent,
     Reference = colors.info,

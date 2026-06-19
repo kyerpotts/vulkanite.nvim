@@ -111,17 +111,31 @@ local function run()
     0x37868b,
     "Statement uses original base0E"
   )
+  local palette = require("vulkanite.palette").get()
+  assert_eq(palette.base0E, "#37868b", "base0E stays original teal")
+  assert_eq(palette.orange, "#e08a64", "extended orange accent exists")
+  assert_eq(palette.purple, "#7b78aa", "extended purple accent exists")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg,
-    0xe05f64,
-    "WarningMsg uses original base09"
+    0xe08a64,
+    "WarningMsg uses extended orange"
   )
   assert_eq(
-    vim.api.nvim_get_hl(0, { name = "SpecialChar" }).fg,
-    0x37868b,
-    "SpecialChar uses original base0F"
+    vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" }).fg,
+    0xe08a64,
+    "DiagnosticWarn uses extended orange"
   )
-  assert_eq(vim.g.terminal_color_5, "#37868b", "terminal magenta uses original base0E")
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "@lsp.type.decorator" }).fg,
+    0x7b78aa,
+    "decorators use extended purple"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "LspKindSnippet" }).fg,
+    0x7b78aa,
+    "snippets use extended purple"
+  )
+  assert_eq(vim.g.terminal_color_5, "#7b78aa", "terminal magenta uses extended purple")
 
   reset_vulkanite()
   require("vulkanite").load({ terminal_colors = false })
