@@ -8,7 +8,7 @@ function M.get(colors, opts)
     GitSignsChange = { link = "Changed" },
     GitSignsDelete = { link = "Removed" },
     GitSignsTopdelete = { link = "GitSignsDelete" },
-    GitSignsChangedelete = { fg = colors.warn },
+    GitSignsChangedelete = { fg = colors.yellow },
     GitSignsUntracked = { fg = colors.teal },
     GitSignsStagedAdd = { link = "GitSignsAdd" },
     GitSignsStagedChange = { link = "GitSignsChange" },

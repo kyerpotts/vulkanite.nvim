@@ -14,7 +14,7 @@ function M.get(colors, opts)
     NeoTreeGitModified = { link = "Changed" },
     NeoTreeGitDeleted = { link = "Removed" },
     NeoTreeIndentMarker = { fg = colors.gutter },
-    NeoTreeRootName = { fg = colors.purple, bold = true },
+    NeoTreeRootName = { fg = colors.accent, bold = true },
     NeoTreeTabActive = { link = "TabLineSel" },
     NeoTreeTabInactive = { link = "TabLine" },
   }

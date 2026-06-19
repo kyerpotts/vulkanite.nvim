@@ -10,7 +10,7 @@ function M.get(colors, opts)
     NvimTreeFolderName = { fg = colors.accent },
     NvimTreeOpenedFolderName = { fg = colors.teal, bold = true },
     NvimTreeEmptyFolderName = { fg = colors.comment },
-    NvimTreeRootFolder = { fg = colors.purple, bold = true },
+    NvimTreeRootFolder = { fg = colors.accent, bold = true },
     NvimTreeGitNew = { link = "Added" },
     NvimTreeGitDirty = { link = "Changed" },
     NvimTreeGitDeleted = { link = "Removed" },

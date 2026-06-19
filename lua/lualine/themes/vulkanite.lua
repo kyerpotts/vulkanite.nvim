@@ -13,7 +13,7 @@ return {
     c = { bg = colors.bg, fg = colors.fg_dim },
   },
   command = {
-    a = { bg = colors.warn, fg = colors.bg },
+    a = { bg = colors.yellow, fg = colors.bg },
     b = { bg = colors.bg_alt, fg = colors.fg },
     c = { bg = colors.bg, fg = colors.fg_dim },
   },
@@ -23,7 +23,7 @@ return {
     c = { bg = colors.bg, fg = colors.fg_dim },
   },
   replace = {
-    a = { bg = colors.error, fg = colors.bg },
+    a = { bg = colors.value, fg = colors.bg },
     b = { bg = colors.bg_alt, fg = colors.fg },
     c = { bg = colors.bg, fg = colors.fg_dim },
   },

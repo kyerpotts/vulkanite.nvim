@@ -8,7 +8,7 @@ function M.get(colors, opts)
     NotifyWARNBorder = { fg = colors.warn },
     NotifyINFOBorder = { fg = colors.info },
     NotifyDEBUGBorder = { fg = colors.comment },
-    NotifyTRACEBorder = { fg = colors.purple },
+    NotifyTRACEBorder = { fg = colors.teal },
     NotifyERRORIcon = { fg = colors.error },
     NotifyWARNIcon = { fg = colors.warn },
     NotifyINFOIcon = { fg = colors.info },
@@ -18,7 +18,7 @@ function M.get(colors, opts)
     NotifyWARNTitle = { fg = colors.warn, bold = true },
     NotifyINFOTitle = { fg = colors.info, bold = true },
     NotifyDEBUGTitle = { fg = colors.comment, bold = true },
-    NotifyTRACETitle = { fg = colors.purple, bold = true },
+    NotifyTRACETitle = { fg = colors.teal, bold = true },
   }
 end
 

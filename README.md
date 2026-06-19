@@ -214,10 +214,10 @@ local palette = require("vulkanite.palette").get()
 ```
 
 The original `base00` through `base0F` roles are preserved and used for core
-syntax mappings. Vulkanite also exports extended accents for selective UI
-surfaces and user overrides:
+syntax mappings. Vulkanite keeps these stricter role constraints:
 
 ```lua
-palette.orange -- "#e08a64", warm accent
-palette.purple -- "#7b78aa", snippet/icon accent
+palette.base09 -- "#e03f32", errors and diagnostics only
+palette.orange -- "#e0af73", warnings only
+palette.purple -- "#7b78aa", icons and completion kinds only
 ```

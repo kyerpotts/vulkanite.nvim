@@ -5,13 +5,13 @@ M.url = "https://github.com/folke/snacks.nvim"
 local function add_indent_groups(groups, colors)
   local rainbow = colors.rainbow
     or {
-      colors.error,
-      colors.warn,
+      colors.value,
+      colors.hint,
       colors.yellow,
       colors.ok,
       colors.teal,
       colors.accent,
-      colors.purple,
+      colors.hint,
     }
 
   for index = 1, 7 do
@@ -53,15 +53,15 @@ function M.get(colors, opts)
     SnacksPickerFile = { fg = colors.fg },
     SnacksPickerGitStatus = { fg = colors.comment },
     SnacksPickerGitStatusAdded = { fg = colors.ok },
-    SnacksPickerGitStatusDeleted = { fg = colors.error },
+    SnacksPickerGitStatusDeleted = { fg = colors.value },
     SnacksPickerGitStatusIgnored = { fg = colors.gutter },
-    SnacksPickerGitStatusModified = { fg = colors.warn },
+    SnacksPickerGitStatusModified = { fg = colors.yellow },
     SnacksPickerGitStatusRenamed = { fg = colors.teal },
-    SnacksPickerGitStatusUntracked = { fg = colors.purple },
+    SnacksPickerGitStatusUntracked = { fg = colors.teal },
     SnacksPickerGitHubIssue = { fg = colors.info },
-    SnacksPickerGitHubLabel = { fg = colors.purple },
+    SnacksPickerGitHubLabel = { fg = colors.teal },
     SnacksPickerGitHubPullRequest = { fg = colors.ok },
-    SnacksPickerIcon = { fg = colors.teal },
+    SnacksPickerIcon = { fg = colors.purple },
     SnacksPickerInput = { link = "NormalFloat" },
     SnacksPickerInputBorder = { link = "FloatBorder" },
     SnacksPickerInputCursorLine = { link = "CursorLine" },
@@ -72,7 +72,7 @@ function M.get(colors, opts)
 
     SnacksInput = { link = "NormalFloat" },
     SnacksInputBorder = { link = "FloatBorder" },
-    SnacksInputIcon = { fg = colors.accent },
+    SnacksInputIcon = { fg = colors.purple },
     SnacksInputTitle = { link = "FloatTitle" },
 
     SnacksProfilerBadge = { fg = colors.bg, bg = colors.accent, bold = true },

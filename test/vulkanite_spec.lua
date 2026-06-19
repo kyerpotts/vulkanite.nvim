@@ -113,18 +113,25 @@ local function run()
   assert_eq(vim.api.nvim_get_hl(0, { name = "Label" }).fg, 0x8fe0fa, "Label uses base0A")
   local palette = require("vulkanite.palette").get()
   assert_eq(palette.base0E, "#37868b", "base0E stays original teal")
-  assert_eq(palette.orange, "#e08a64", "extended orange accent exists")
-  assert_eq(palette.purple, "#7b78aa", "extended purple accent exists")
-  assert_eq(vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg, 0xe05f64, "WarningMsg uses base08")
+  assert_eq(palette.base09, "#e03f32", "base09 is dark error red")
+  assert_eq(palette.orange, "#e0af73", "orange warning accent exists")
+  assert_eq(palette.purple, "#7b78aa", "purple icon accent exists")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "ErrorMsg" }).fg, 0xe03f32, "ErrorMsg uses base09")
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg,
+    0xe03f32,
+    "DiagnosticError uses base09"
+  )
+  assert_eq(vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg, 0xe0af73, "WarningMsg uses orange")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" }).fg,
-    0x37868b,
-    "DiagnosticWarn uses base0E"
+    0xe0af73,
+    "DiagnosticWarn uses orange"
   )
-  assert_eq(vim.api.nvim_get_hl(0, { name = "Constant" }).fg, 0xe05f64, "Constant uses base09")
-  assert_eq(vim.api.nvim_get_hl(0, { name = "Number" }).fg, 0xe05f64, "Number uses base09")
-  assert_eq(vim.api.nvim_get_hl(0, { name = "Boolean" }).fg, 0xe05f64, "Boolean uses base09")
-  assert_eq(vim.api.nvim_get_hl(0, { name = "Float" }).fg, 0xe05f64, "Float uses base09")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Constant" }).fg, 0xe05f64, "Constant uses base08")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Number" }).fg, 0xe05f64, "Number uses base08")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Boolean" }).fg, 0xe05f64, "Boolean uses base08")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Float" }).fg, 0xe05f64, "Float uses base08")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "LspKindConstant" }).fg,
     0xe05f64,
@@ -138,9 +145,9 @@ local function run()
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "LspKindSnippet" }).fg,
     0x7b78aa,
-    "snippets use extended purple"
+    "kind icons use purple"
   )
-  assert_eq(vim.g.terminal_color_5, "#7b78aa", "terminal magenta uses extended purple")
+  assert_eq(vim.g.terminal_color_5, "#37868b", "terminal magenta stays base0E")
 
   reset_vulkanite()
   require("vulkanite").load({ terminal_colors = false })
@@ -158,7 +165,7 @@ local function run()
   assert_eq(groups.Normal.bg, nil, "transparent Normal background is omitted before apply")
 
   local colors_without_callbacks = require("vulkanite.colors").setup({})
-  assert_eq(colors_without_callbacks.error, "#e05f64", "colors.setup defaults missing callbacks")
+  assert_eq(colors_without_callbacks.error, "#e03f32", "colors.setup defaults missing callbacks")
 
   reset_vulkanite()
   require("vulkanite").load({
@@ -245,6 +252,36 @@ local function run()
     vim.api.nvim_get_hl(0, { name = "LspKindColor" }).fg,
     0xe05f64,
     "color kind uses value red"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "SnacksDashboardIcon" }).fg,
+    0x7b78aa,
+    "Snacks icon uses purple"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "NotifyTRACEIcon" }).fg,
+    0x7b78aa,
+    "Notify trace icon uses purple"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "WhichKeyGroup" }).fg,
+    0x8fe0fa,
+    "WhichKeyGroup is not purple"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "RenderMarkdownH2" }).fg,
+    0x8fe0fa,
+    "Markdown heading is not purple"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "NeoTreeRootName" }).fg,
+    0x8fe0fa,
+    "Neo-tree root is not purple"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "LazyReasonPlugin" }).fg,
+    0x567e96,
+    "Lazy reason is not purple"
   )
 
   reset_vulkanite()

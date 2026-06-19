@@ -8,7 +8,7 @@ local palette = {
   base06 = "#f8fdff",
   base07 = "#f8fdff",
   base08 = "#e05f64",
-  base09 = "#e05f64",
+  base09 = "#e03f32",
   base0A = "#8fe0fa",
   base0B = "#8be086",
   base0C = "#567e96",
@@ -16,7 +16,7 @@ local palette = {
   base0E = "#37868b",
   base0F = "#37868b",
   comment = "#8e969a",
-  orange = "#e08a64",
+  orange = "#e0af73",
   purple = "#7b78aa",
 }
 
@@ -28,7 +28,8 @@ local aliases = {
   fg_dim = palette.base04,
   comment = palette.comment,
   gutter = palette.base03,
-  red = palette.base08,
+  red = palette.base09,
+  value = palette.base08,
   orange = palette.orange,
   yellow = palette.base0A,
   green = palette.base0B,

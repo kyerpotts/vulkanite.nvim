@@ -11,7 +11,7 @@ function M.get(colors, opts)
     LazyH2 = { fg = colors.accent, bold = true },
     LazyProgressDone = { fg = colors.ok },
     LazyProgressTodo = { fg = colors.gutter },
-    LazyReasonPlugin = { fg = colors.purple },
+    LazyReasonPlugin = { fg = colors.hint },
     LazyProp = { fg = colors.teal },
     LazyValue = { fg = colors.value },
     LazyUrl = { link = "Underlined" },

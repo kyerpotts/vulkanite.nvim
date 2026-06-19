@@ -11,7 +11,7 @@ function M.get(colors, opts)
     TelescopePromptBorder = { fg = colors.teal, bg = colors.bg_alt },
     TelescopePromptPrefix = { fg = colors.accent },
     TelescopeSelection = { link = "Visual" },
-    TelescopeSelectionCaret = { fg = colors.warn },
+    TelescopeSelectionCaret = { fg = colors.accent },
     TelescopeMatching = { fg = colors.yellow, bold = true },
     TelescopePreviewLine = { link = "CursorLine" },
   }
