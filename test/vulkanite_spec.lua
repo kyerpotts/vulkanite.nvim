@@ -10,6 +10,13 @@ local function assert_truthy(value, message)
 	end
 end
 
+local function assert_link_or_fg(group, link, message)
+	local highlight = vim.api.nvim_get_hl(0, { name = group, link = true })
+	if highlight.link ~= link and highlight.fg == nil then
+		error((message or group .. " should link to " .. link .. " or set fg") .. ": got " .. vim.inspect(highlight), 2)
+	end
+end
+
 local function reset_vulkanite()
 	for name in pairs(package.loaded) do
 		if name == "vulkanite" or name:match("^vulkanite%.") then
@@ -35,6 +42,9 @@ local function run()
 	assert_eq(vim.g.colors_name, "vulkanite", "colorscheme name")
 	assert_truthy(vim.api.nvim_get_hl(0, { name = "Normal" }).fg, "Normal fg set")
 	assert_truthy(vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg, "DiagnosticError fg set")
+	assert_link_or_fg("@function", "Function", "@function")
+	assert_link_or_fg("@lsp.type.function", "Function", "@lsp.type.function")
+	assert_truthy(vim.api.nvim_get_hl(0, { name = "LspKindFunction" }).fg, "LspKindFunction fg set")
 
 	reset_vulkanite()
 	require("vulkanite").load({ terminal_colors = false })
@@ -47,6 +57,8 @@ local function run()
 	local opts = require("vulkanite.config").extend({ transparent = true })
 	local colors = require("vulkanite.colors").setup(opts)
 	local groups = require("vulkanite.groups").setup(colors, opts)
+	local raw_normal = groups.Normal
+	assert_eq(raw_normal.bg, nil, "raw transparent Normal background is omitted before apply")
 	assert_eq(groups.Normal.bg, nil, "transparent Normal background is omitted before apply")
 
 	reset_vulkanite()
