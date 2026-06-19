@@ -126,6 +126,19 @@ local function run()
     "DiagnosticWarn uses extended orange"
   )
   assert_eq(
+    vim.api.nvim_get_hl(0, { name = "Constant" }).fg,
+    0xe05f64,
+    "Constant stays original red"
+  )
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Number" }).fg, 0xe05f64, "Number stays original red")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Boolean" }).fg, 0xe05f64, "Boolean stays original red")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Float" }).fg, 0xe05f64, "Float stays original red")
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "LspKindConstant" }).fg,
+    0xe05f64,
+    "constant kind stays red"
+  )
+  assert_eq(
     vim.api.nvim_get_hl(0, { name = "@lsp.type.decorator" }).fg,
     0x7b78aa,
     "decorators use extended purple"

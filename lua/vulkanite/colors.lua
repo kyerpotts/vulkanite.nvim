@@ -16,6 +16,7 @@ function M.setup(opts)
     gutter = p.gutter,
     error = p.red,
     warn = p.orange,
+    value = p.red,
     info = p.blue,
     hint = p.cyan,
     ok = p.green,
