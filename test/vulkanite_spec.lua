@@ -196,6 +196,16 @@ local function run()
     vim.api.nvim_get_hl(0, { name = "SnacksPickerMatch" }).fg,
     "manual snacks toggle sets picker match"
   )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "SnacksDashboardIcon" }).fg,
+    0x7b78aa,
+    "Snacks icons stay purple"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "SnacksDashboardKey" }).fg,
+    0xe05f64,
+    "Snacks keys use red"
+  )
   assert_unset("TelescopeMatching", "manual telescope false keeps telescope unset")
 
   reset_vulkanite()

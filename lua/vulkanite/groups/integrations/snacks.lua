@@ -40,7 +40,7 @@ function M.get(colors, opts)
     SnacksDashboardFooter = { fg = colors.comment },
     SnacksDashboardHeader = { fg = colors.accent },
     SnacksDashboardIcon = { fg = colors.purple },
-    SnacksDashboardKey = { fg = colors.warn },
+    SnacksDashboardKey = { fg = colors.value },
     SnacksDashboardSpecial = { fg = colors.teal },
     SnacksDashboardTitle = { fg = colors.yellow, bold = true },
 
