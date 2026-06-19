@@ -100,6 +100,28 @@ local function run()
   assert_link_or_fg("@function", "Function", "@function")
   assert_link_or_fg("@lsp.type.function", "Function", "@lsp.type.function")
   assert_truthy(vim.api.nvim_get_hl(0, { name = "LspKindFunction" }).fg, "LspKindFunction fg set")
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Normal" }).bg, 0x0f1416, "Normal uses original base00")
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "NormalFloat" }).bg,
+    0x0f1416,
+    "NormalFloat uses original base01"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "Statement" }).fg,
+    0x37868b,
+    "Statement uses original base0E"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg,
+    0xe05f64,
+    "WarningMsg uses original base09"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "SpecialChar" }).fg,
+    0x37868b,
+    "SpecialChar uses original base0F"
+  )
+  assert_eq(vim.g.terminal_color_5, "#37868b", "terminal magenta uses original base0E")
 
   reset_vulkanite()
   require("vulkanite").load({ terminal_colors = false })
