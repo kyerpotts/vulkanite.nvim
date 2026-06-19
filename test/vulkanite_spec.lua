@@ -44,6 +44,11 @@ local function run()
 	require("vulkanite").load({ transparent = true })
 	assert_eq(vim.api.nvim_get_hl(0, { name = "Normal" }).bg, nil, "transparent Normal background")
 
+	local opts = require("vulkanite.config").extend({ transparent = true })
+	local colors = require("vulkanite.colors").setup(opts)
+	local groups = require("vulkanite.groups").setup(colors, opts)
+	assert_eq(groups.Normal.bg, nil, "transparent Normal background is omitted before apply")
+
 	reset_vulkanite()
 	require("vulkanite").load({
 		on_colors = function(colors)

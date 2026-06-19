@@ -252,11 +252,9 @@ local M = {}
 
 function M.setup(opts)
   local p = require("vulkanite.palette").get()
-  local none = "NONE"
   local colors = vim.tbl_deep_extend("force", p, {
-    none = none,
-    bg_sidebar = opts.transparent and none or p.bg_alt,
-    bg_statusline = opts.transparent and none or p.bg_alt,
+    bg_sidebar = p.bg_alt,
+    bg_statusline = p.bg_alt,
     border = p.gutter,
     border_highlight = p.cyan,
     error = p.red,
@@ -296,6 +294,10 @@ function M.setup(opts)
     },
     rainbow = { p.red, p.orange, p.yellow, p.green, p.cyan, p.blue, p.purple },
   })
+  if opts.transparent then
+    colors.bg_sidebar = nil
+    colors.bg_statusline = nil
+  end
   opts.on_colors(colors)
   return colors
 end
