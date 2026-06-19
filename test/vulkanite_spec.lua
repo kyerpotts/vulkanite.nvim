@@ -1,6 +1,6 @@
-local function assert_eq(expected, actual, message)
+local function assert_eq(actual, expected, message)
 	if actual ~= expected then
-		error(string.format("%s\nexpected: %s\nactual: %s", message or "values are not equal", vim.inspect(expected), vim.inspect(actual)), 2)
+		error((message or "assertion failed") .. ": expected " .. vim.inspect(expected) .. ", got " .. vim.inspect(actual), 2)
 	end
 end
 
@@ -11,31 +11,54 @@ local function assert_truthy(value, message)
 end
 
 local function reset_vulkanite()
-	package.loaded["vulkanite"] = nil
-	package.loaded["vulkanite.palette"] = nil
+	for name in pairs(package.loaded) do
+		if name == "vulkanite" or name:match("^vulkanite%.") then
+			package.loaded[name] = nil
+		end
+	end
 	vim.g.colors_name = nil
-	vim.cmd("highlight clear Normal")
-	vim.cmd("highlight clear DiagnosticError")
+	for i = 0, 15 do
+		vim.g["terminal_color_" .. i] = nil
+	end
 end
 
-reset_vulkanite()
+local function run()
+	reset_vulkanite()
+	local vulkanite = require("vulkanite")
+	assert_truthy(vulkanite, "vulkanite module should load")
+	assert_eq(type(vulkanite.setup), "function", "setup exists")
+	assert_eq(type(vulkanite.load), "function", "load exists")
+	assert_eq(type(require("vulkanite.palette").get), "function", "palette get exists")
 
-local vulkanite = require("vulkanite")
-assert_truthy(vulkanite, "vulkanite module should load")
-assert_eq("function", type(vulkanite.setup), "vulkanite.setup should exist")
-assert_eq("function", type(vulkanite.load), "vulkanite.load should exist")
+	vulkanite.setup({})
+	vim.cmd.colorscheme("vulkanite")
+	assert_eq(vim.g.colors_name, "vulkanite", "colorscheme name")
+	assert_truthy(vim.api.nvim_get_hl(0, { name = "Normal" }).fg, "Normal fg set")
+	assert_truthy(vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg, "DiagnosticError fg set")
 
-local palette = require("vulkanite.palette")
-assert_eq("function", type(palette.get), "vulkanite.palette.get should exist")
+	reset_vulkanite()
+	require("vulkanite").load({ terminal_colors = false })
+	assert_eq(vim.g.terminal_color_0, nil, "terminal colors stay unset when disabled")
 
-vulkanite.setup({})
-vulkanite.load()
-vim.cmd.colorscheme("vulkanite")
+	reset_vulkanite()
+	require("vulkanite").load({ transparent = true })
+	assert_eq(vim.api.nvim_get_hl(0, { name = "Normal" }).bg, nil, "transparent Normal background")
 
-assert_eq("vulkanite", vim.g.colors_name, "colorscheme should set colors_name")
+	reset_vulkanite()
+	require("vulkanite").load({
+		on_colors = function(colors)
+			colors.error = "#ff0000"
+		end,
+		on_highlights = function(groups, colors)
+			groups.VulkaniteOverrideProbe = { fg = colors.error }
+		end,
+	})
+	assert_eq(vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg, 0xff0000, "on_colors mutates error")
+	assert_eq(vim.api.nvim_get_hl(0, { name = "VulkaniteOverrideProbe" }).fg, 0xff0000, "on_highlights sees colors")
+end
 
-local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
-assert_truthy(normal.fg, "Normal fg should exist")
-
-local diagnostic_error = vim.api.nvim_get_hl(0, { name = "DiagnosticError", link = false })
-assert_truthy(diagnostic_error.fg, "DiagnosticError fg should exist")
+local ok, err = xpcall(run, debug.traceback)
+if not ok then
+	vim.api.nvim_err_writeln(err)
+	vim.cmd.cquit(1)
+end
