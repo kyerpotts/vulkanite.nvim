@@ -19,6 +19,7 @@ function M.setup(opts)
     value = p.value,
     info = p.blue,
     hint = p.cyan,
+    selection = p.cyan,
     ok = p.green,
     accent = p.blue,
     yellow = p.yellow,

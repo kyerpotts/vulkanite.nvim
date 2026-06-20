@@ -106,6 +106,32 @@ local function run()
     0x0f1416,
     "NormalFloat uses original base01"
   )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "CursorLine" }).bg,
+    0x567e96,
+    "CursorLine uses teal selection"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "QuickFixLine" }).bg,
+    0x567e96,
+    "QuickFixLine uses teal selection"
+  )
+  assert_eq(vim.api.nvim_get_hl(0, { name = "Visual" }).bg, 0x567e96, "Visual uses teal selection")
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "Visual" }).fg,
+    0x0f1416,
+    "Visual keeps selected text readable"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "PmenuSel" }).bg,
+    0x567e96,
+    "PmenuSel uses teal selection"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "PmenuSel" }).fg,
+    0x0f1416,
+    "PmenuSel keeps selected text readable"
+  )
   assert_eq(vim.api.nvim_get_hl(0, { name = "Statement" }).fg, 0xe05f64, "Statement uses base08")
   assert_eq(vim.api.nvim_get_hl(0, { name = "Keyword" }).fg, 0x37868b, "Keyword uses base0E")
   assert_eq(vim.api.nvim_get_hl(0, { name = "Operator" }).fg, 0x37868b, "Operator uses base0E")
