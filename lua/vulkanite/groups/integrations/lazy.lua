@@ -21,7 +21,7 @@ function M.get(colors, opts)
     -- Lazy.nvim reason text for plugins loaded by plugin dependency.
     LazyReasonPlugin = { fg = colors.hint },
     -- Lazy.nvim property names.
-    LazyProp = { fg = colors.teal },
+    LazyProp = { fg = colors.accent_secondary },
     -- Lazy.nvim property values.
     LazyValue = { fg = colors.value },
     -- Lazy.nvim URLs.

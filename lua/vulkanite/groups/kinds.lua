@@ -31,55 +31,55 @@ local kinds = {
 function M.kinds(ret, pattern, colors)
   local palette = {
     -- Completion kind text label.
-    Text = colors.fg,
+    Text = colors.syntax.text,
     -- Completion kind method icon.
-    Method = colors.accent,
+    Method = colors.syntax.func,
     -- Completion kind function icon.
-    Function = colors.accent,
+    Function = colors.syntax.func,
     -- Completion kind constructor icon.
-    Constructor = colors.teal,
+    Constructor = colors.syntax.type,
     -- Completion kind field icon.
-    Field = colors.fg,
+    Field = colors.syntax.property,
     -- Completion kind variable icon.
-    Variable = colors.fg,
+    Variable = colors.syntax.variable,
     -- Completion kind class icon.
-    Class = colors.teal,
+    Class = colors.syntax.type,
     -- Completion kind interface icon.
-    Interface = colors.teal,
+    Interface = colors.syntax.type,
     -- Completion kind module icon.
-    Module = colors.yellow,
+    Module = colors.syntax.module,
     -- Completion kind property icon.
-    Property = colors.fg,
+    Property = colors.syntax.property,
     -- Completion kind unit icon.
-    Unit = colors.value,
+    Unit = colors.syntax.literal,
     -- Completion kind value icon.
-    Value = colors.value,
+    Value = colors.syntax.literal,
     -- Completion kind enum icon.
-    Enum = colors.teal,
+    Enum = colors.syntax.type,
     -- Completion kind keyword icon.
-    Keyword = colors.purple,
+    Keyword = colors.accent.icon,
     -- Completion kind snippet icon.
-    Snippet = colors.purple,
+    Snippet = colors.accent.icon,
     -- Completion kind color icon.
-    Color = colors.value,
+    Color = colors.syntax.literal,
     -- Completion kind file icon.
-    File = colors.accent,
+    File = colors.accent.primary,
     -- Completion kind reference icon.
-    Reference = colors.info,
+    Reference = colors.diagnostic.info,
     -- Completion kind folder icon.
-    Folder = colors.accent,
+    Folder = colors.accent.primary,
     -- Completion kind enum-member icon.
-    EnumMember = colors.value,
+    EnumMember = colors.syntax.constant,
     -- Completion kind constant icon.
-    Constant = colors.value,
+    Constant = colors.syntax.constant,
     -- Completion kind struct icon.
-    Struct = colors.teal,
+    Struct = colors.syntax.type,
     -- Completion kind event icon.
-    Event = colors.yellow,
+    Event = colors.syntax.special,
     -- Completion kind operator icon.
-    Operator = colors.fg_dim,
+    Operator = colors.syntax.operator,
     -- Completion kind type-parameter icon.
-    TypeParameter = colors.teal,
+    TypeParameter = colors.syntax.type,
   }
 
   for _, kind in ipairs(kinds) do

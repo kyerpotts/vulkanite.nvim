@@ -7,11 +7,11 @@ function M.setup(colors, opts)
     -- LSP semantic token for methods.
     ["@lsp.type.method"] = { link = "Function" },
     -- LSP semantic token for variables.
-    ["@lsp.type.variable"] = vim.tbl_extend("force", { fg = colors.fg }, opts.styles.variables),
+    ["@lsp.type.variable"] = { link = "@variable" },
     -- LSP semantic token for parameters.
-    ["@lsp.type.parameter"] = { fg = colors.fg_dim },
+    ["@lsp.type.parameter"] = { link = "@variable.parameter" },
     -- LSP semantic token for properties.
-    ["@lsp.type.property"] = { fg = colors.fg },
+    ["@lsp.type.property"] = { link = "@property" },
     -- LSP semantic token for type names.
     ["@lsp.type.type"] = { link = "Type" },
     -- LSP semantic token for classes.
@@ -19,13 +19,13 @@ function M.setup(colors, opts)
     -- LSP semantic token for structs.
     ["@lsp.type.struct"] = { link = "Type" },
     -- LSP semantic token for interfaces.
-    ["@lsp.type.interface"] = { fg = colors.teal, italic = true },
+    ["@lsp.type.interface"] = { link = "Type" },
     -- LSP semantic token for enums.
     ["@lsp.type.enum"] = { link = "Type" },
     -- LSP semantic token for enum members.
     ["@lsp.type.enumMember"] = { link = "Constant" },
     -- LSP semantic token for namespaces.
-    ["@lsp.type.namespace"] = { link = "TSNamespace" },
+    ["@lsp.type.namespace"] = { link = "@module" },
     -- LSP semantic token for keywords.
     ["@lsp.type.keyword"] = { link = "Keyword" },
     -- LSP semantic token for comments.
@@ -37,48 +37,31 @@ function M.setup(colors, opts)
     -- LSP semantic token for operators.
     ["@lsp.type.operator"] = { link = "Operator" },
     -- LSP semantic token for decorators and attributes.
-    ["@lsp.type.decorator"] = { fg = colors.teal },
+    ["@lsp.type.decorator"] = { link = "Special" },
     -- LSP semantic token for macros.
     ["@lsp.type.macro"] = { link = "Macro" },
     -- LSP semantic token for modifiers.
     ["@lsp.type.modifier"] = { link = "Keyword" },
     -- LSP semantic token for regular expressions.
-    ["@lsp.type.regexp"] = { fg = colors.teal },
+    ["@lsp.type.regexp"] = { link = "@string.regexp" },
     -- LSP semantic token for generic type parameters.
-    ["@lsp.type.typeParameter"] = { fg = colors.teal, italic = true },
+    ["@lsp.type.typeParameter"] = { link = "Type" },
 
-    -- LSP readonly modifier applied to any semantic token.
-    ["@lsp.mod.readonly"] = { fg = colors.value, italic = true },
-    -- LSP default-library modifier applied to any semantic token.
-    ["@lsp.mod.defaultLibrary"] = { fg = colors.teal, italic = true },
-    -- LSP deprecated modifier applied to any semantic token.
+    -- Deprecation changes presentation; readonly and default-library modifiers preserve it.
     ["@lsp.mod.deprecated"] = { strikethrough = true },
-    -- LSP definition modifier applied to declarations that define symbols.
-    ["@lsp.mod.definition"] = { bold = true },
-    -- LSP declaration modifier applied to declarations that introduce symbols.
-    ["@lsp.mod.declaration"] = { bold = true },
-    -- LSP variable token that is readonly.
-    ["@lsp.typemod.variable.readonly"] = { fg = colors.value, italic = true },
-    -- LSP variable token from the default library.
-    ["@lsp.typemod.variable.defaultLibrary"] = { fg = colors.teal, italic = true },
-    -- LSP parameter token that is readonly.
-    ["@lsp.typemod.parameter.readonly"] = { fg = colors.value, italic = true },
-    -- LSP property token that is readonly.
-    ["@lsp.typemod.property.readonly"] = { fg = colors.value, italic = true },
-    -- LSP property token from the default library.
-    ["@lsp.typemod.property.defaultLibrary"] = { fg = colors.teal, italic = true },
-    -- LSP function token from the default library.
+
+    -- Combined captures link back to the corresponding syntax role.
+    ["@lsp.typemod.variable.readonly"] = { link = "@variable" },
+    ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
+    ["@lsp.typemod.parameter.readonly"] = { link = "@variable.parameter" },
+    ["@lsp.typemod.property.readonly"] = { link = "@property" },
+    ["@lsp.typemod.property.defaultLibrary"] = { link = "@property" },
     ["@lsp.typemod.function.defaultLibrary"] = { link = "Function" },
-    -- LSP method token from the default library.
     ["@lsp.typemod.method.defaultLibrary"] = { link = "Function" },
-    -- LSP class token from the default library.
     ["@lsp.typemod.class.defaultLibrary"] = { link = "Type" },
-    -- LSP type token from the default library.
     ["@lsp.typemod.type.defaultLibrary"] = { link = "Type" },
-    -- LSP namespace token from the default library.
-    ["@lsp.typemod.namespace.defaultLibrary"] = { fg = colors.teal, italic = true },
-    -- LSP enum-member token that is readonly.
-    ["@lsp.typemod.enumMember.readonly"] = { fg = colors.value, italic = true },
+    ["@lsp.typemod.namespace.defaultLibrary"] = { link = "@module.builtin" },
+    ["@lsp.typemod.enumMember.readonly"] = { link = "Constant" },
   }
 end
 

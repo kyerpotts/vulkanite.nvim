@@ -1,32 +1,42 @@
 local M = {}
 
+M.integration_keys = {
+  "gitsigns",
+  "telescope",
+  "cmp",
+  "blink",
+  "which_key",
+  "lazy",
+  "neo_tree",
+  "nvim_tree",
+  "noice",
+  "notify",
+  "snacks",
+  "treesitter_context",
+  "render_markdown",
+}
+
+local plugin_defaults = {
+  auto = true,
+  all = false,
+}
+for _, key in ipairs(M.integration_keys) do
+  plugin_defaults[key] = "auto"
+end
+
 local defaults = {
   transparent = false,
   terminal_colors = true,
   styles = {
     comments = { italic = true },
-    keywords = { bold = true },
-    functions = { bold = true },
-    strings = { italic = true },
+    keywords = {},
+    functions = { italic = true },
+    types = { bold = true },
+    constants = { bold = true },
+    strings = {},
     variables = {},
   },
-  plugins = {
-    auto = true,
-    all = false,
-    gitsigns = "auto",
-    telescope = "auto",
-    cmp = "auto",
-    blink = "auto",
-    which_key = "auto",
-    lazy = "auto",
-    neo_tree = "auto",
-    nvim_tree = "auto",
-    noice = "auto",
-    notify = "auto",
-    snacks = "auto",
-    treesitter_context = "auto",
-    render_markdown = "auto",
-  },
+  plugins = plugin_defaults,
   on_colors = function() end,
   on_highlights = function() end,
 }

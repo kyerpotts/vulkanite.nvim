@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="450" viewBox="0 0 920 450" role="img" aria-labelledby="title desc">
+  <title id="title">Vulkanite 16-color authored palette</title>
+  <desc id="desc">Sixteen named color swatches and hexadecimal values for the Vulkanite Neovim colorscheme.</desc>
+  <rect width="920" height="450" rx="16" fill="#0f1416"/>
+  <text x="32" y="44" fill="#dce5e9" font-family="monospace" font-size="24" font-weight="bold">Vulkanite palette</text>
+  <g font-family="monospace" font-size="15" fill="#dce5e9">
+    <g transform="translate(32 72)"><rect width="64" height="34" rx="5" fill="#0f1416" stroke="#5c6370"/><text x="76" y="15">dark_black</text><text x="76" y="32" fill="#abb2bf">#0f1416</text></g>
+    <g transform="translate(472 72)"><rect width="64" height="34" rx="5" fill="#151b1e" stroke="#5c6370"/><text x="76" y="15">soft_black</text><text x="76" y="32" fill="#abb2bf">#151b1e</text></g>
+    <g transform="translate(32 118)"><rect width="64" height="34" rx="5" fill="#5c6370"/><text x="76" y="15">slate_grey</text><text x="76" y="32" fill="#abb2bf">#5c6370</text></g>
+    <g transform="translate(472 118)"><rect width="64" height="34" rx="5" fill="#8e969a"/><text x="76" y="15">comment_grey</text><text x="76" y="32" fill="#abb2bf">#8e969a</text></g>
+    <g transform="translate(32 164)"><rect width="64" height="34" rx="5" fill="#abb2bf"/><text x="76" y="15">light_grey</text><text x="76" y="32" fill="#abb2bf">#abb2bf</text></g>
+    <g transform="translate(472 164)"><rect width="64" height="34" rx="5" fill="#dce5e9"/><text x="76" y="15">pale_grey</text><text x="76" y="32" fill="#abb2bf">#dce5e9</text></g>
+    <g transform="translate(32 210)"><rect width="64" height="34" rx="5" fill="#e05f64"/><text x="76" y="15">coral_red</text><text x="76" y="32" fill="#abb2bf">#e05f64</text></g>
+    <g transform="translate(472 210)"><rect width="64" height="34" rx="5" fill="#e03f32"/><text x="76" y="15">vivid_red</text><text x="76" y="32" fill="#abb2bf">#e03f32</text></g>
+    <g transform="translate(32 256)"><rect width="64" height="34" rx="5" fill="#e0af68"/><text x="76" y="15">yellow</text><text x="76" y="32" fill="#abb2bf">#e0af68</text></g>
+    <g transform="translate(472 256)"><rect width="64" height="34" rx="5" fill="#76c7e3"/><text x="76" y="15">sky_blue</text><text x="76" y="32" fill="#abb2bf">#76c7e3</text></g>
+    <g transform="translate(32 302)"><rect width="64" height="34" rx="5" fill="#8be086"/><text x="76" y="15">bright_green</text><text x="76" y="32" fill="#abb2bf">#8be086</text></g>
+    <g transform="translate(472 302)"><rect width="64" height="34" rx="5" fill="#8fe0fa"/><text x="76" y="15">bright_blue</text><text x="76" y="32" fill="#abb2bf">#8fe0fa</text></g>
+    <g transform="translate(32 348)"><rect width="64" height="34" rx="5" fill="#567e96"/><text x="76" y="15">muted_blue</text><text x="76" y="32" fill="#abb2bf">#567e96</text></g>
+    <g transform="translate(472 348)"><rect width="64" height="34" rx="5" fill="#37868b"/><text x="76" y="15">dark_teal</text><text x="76" y="32" fill="#abb2bf">#37868b</text></g>
+    <g transform="translate(32 394)"><rect width="64" height="34" rx="5" fill="#4fa3a6"/><text x="76" y="15">bright_teal</text><text x="76" y="32" fill="#abb2bf">#4fa3a6</text></g>
+    <g transform="translate(472 394)"><rect width="64" height="34" rx="5" fill="#9083B9"/><text x="76" y="15">purple</text><text x="76" y="32" fill="#abb2bf">#9083B9</text></g>
+  </g>
+</svg>

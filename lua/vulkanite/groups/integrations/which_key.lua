@@ -13,13 +13,13 @@ function M.get(colors, opts)
     -- Which-key separator between keys and descriptions.
     WhichKeySeparator = { fg = colors.comment },
     -- Which-key popup body.
-    WhichKeyFloat = { link = "NormalFloat" },
+    WhichKeyNormal = { link = "NormalFloat" },
     -- Which-key popup border.
     WhichKeyBorder = { link = "FloatBorder" },
     -- Which-key value text for dynamic mappings.
     WhichKeyValue = { fg = colors.comment },
     -- Which-key icon beside a mapping or group.
-    WhichKeyIcon = { fg = colors.purple },
+    WhichKeyIcon = { fg = colors.icon },
     -- Which-key popup title.
     WhichKeyTitle = { link = "FloatTitle" },
   }

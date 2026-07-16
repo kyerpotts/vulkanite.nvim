@@ -3,73 +3,18 @@ local kinds = require("vulkanite.groups.kinds")
 local semantic_tokens = require("vulkanite.groups.semantic_tokens")
 local treesitter = require("vulkanite.groups.treesitter")
 
-local integrations = {
-  {
-    key = "gitsigns",
-    module = "vulkanite.groups.integrations.gitsigns",
-    repos = { "lewis6991/gitsigns.nvim", "gitsigns.nvim" },
-  },
-  {
-    key = "telescope",
-    module = "vulkanite.groups.integrations.telescope",
-    repos = { "nvim-telescope/telescope.nvim", "telescope.nvim" },
-  },
-  {
-    key = "cmp",
-    module = "vulkanite.groups.integrations.cmp",
-    repos = { "hrsh7th/nvim-cmp", "nvim-cmp" },
-  },
-  {
-    key = "blink",
-    module = "vulkanite.groups.integrations.blink",
-    repos = { "saghen/blink.cmp", "blink.cmp" },
-  },
-  {
-    key = "which_key",
-    module = "vulkanite.groups.integrations.which_key",
-    repos = { "folke/which-key.nvim", "which-key.nvim" },
-  },
-  {
-    key = "lazy",
-    module = "vulkanite.groups.integrations.lazy",
-    repos = { "folke/lazy.nvim", "lazy.nvim" },
-  },
-  {
-    key = "neo_tree",
-    module = "vulkanite.groups.integrations.neo_tree",
-    repos = { "nvim-neo-tree/neo-tree.nvim", "neo-tree.nvim" },
-  },
-  {
-    key = "nvim_tree",
-    module = "vulkanite.groups.integrations.nvim_tree",
-    repos = { "nvim-tree/nvim-tree.lua", "nvim-tree.lua" },
-  },
-  {
-    key = "noice",
-    module = "vulkanite.groups.integrations.noice",
-    repos = { "folke/noice.nvim", "noice.nvim" },
-  },
-  {
-    key = "notify",
-    module = "vulkanite.groups.integrations.notify",
-    repos = { "rcarriga/nvim-notify", "nvim-notify" },
-  },
-  {
-    key = "snacks",
-    module = "vulkanite.groups.integrations.snacks",
-    repos = { "folke/snacks.nvim", "snacks.nvim" },
-  },
-  {
-    key = "treesitter_context",
-    module = "vulkanite.groups.integrations.treesitter_context",
-    repos = { "nvim-treesitter/nvim-treesitter-context", "nvim-treesitter-context" },
-  },
-  {
-    key = "render_markdown",
-    module = "vulkanite.groups.integrations.render_markdown",
-    repos = { "MeanderingProgrammer/render-markdown.nvim", "render-markdown.nvim" },
-  },
-}
+local integration_keys = require("vulkanite.config").integration_keys
+
+local integrations = {}
+for _, key in ipairs(integration_keys) do
+  local adapter = require("vulkanite.groups.integrations." .. key)
+  local repo = adapter.url:match("github%.com/([^#?]+)"):gsub("%.git$", "")
+  integrations[#integrations + 1] = {
+    key = key,
+    adapter = adapter,
+    repos = { repo, repo:match("([^/]+)$") },
+  }
+end
 
 local function matches_repo(value, repos)
   if type(value) ~= "string" then
@@ -173,19 +118,19 @@ local function merge(ret, groups)
   end
 end
 
-function M.setup(colors, opts)
+function M.setup(roles, opts)
   local ret = {}
 
-  merge(ret, base.setup(colors, opts))
-  merge(ret, treesitter.setup(colors, opts))
-  merge(ret, semantic_tokens.setup(colors, opts))
-  kinds.kinds(ret, "LspKind%s", colors)
+  merge(ret, base.setup(roles, opts))
+  merge(ret, treesitter.setup(roles, opts))
+  merge(ret, semantic_tokens.setup(roles, opts))
+  kinds.kinds(ret, "LspKind%s", roles)
 
   local plugins = opts.plugins or {}
   local detected = detect_plugins(opts)
   for _, integration in ipairs(integrations) do
     if plugin_enabled(plugins, detected, integration.key) then
-      merge(ret, require(integration.module).get(colors, opts))
+      merge(ret, integration.adapter.get(roles.integration, opts))
     end
   end
 

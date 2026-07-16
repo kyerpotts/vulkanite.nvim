@@ -13,9 +13,9 @@ function M.get(colors, opts)
     -- Gitsigns sign-column marker for top-deleted lines.
     GitSignsTopdelete = { link = "GitSignsDelete" },
     -- Gitsigns sign-column marker for changed lines with deleted content.
-    GitSignsChangedelete = { fg = colors.yellow },
+    GitSignsChangedelete = { fg = colors.match },
     -- Gitsigns sign-column marker for untracked lines.
-    GitSignsUntracked = { fg = colors.teal },
+    GitSignsUntracked = { fg = colors.accent_secondary },
     -- Gitsigns staged sign-column marker for added lines.
     GitSignsStagedAdd = { link = "GitSignsAdd" },
     -- Gitsigns staged sign-column marker for changed lines.

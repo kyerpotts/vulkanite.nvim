@@ -7,7 +7,11 @@ function M.get(colors, opts)
     -- Treesitter-context sticky context window body.
     TreesitterContext = { fg = colors.fg, bg = colors.bg_alt },
     -- Treesitter-context line number for the sticky context.
-    TreesitterContextLineNumber = { fg = colors.teal, bg = colors.bg_alt, bold = true },
+    TreesitterContextLineNumber = {
+      fg = colors.accent_secondary,
+      bg = colors.bg_alt,
+      bold = true,
+    },
     -- Treesitter-context underline at the bottom of the sticky context.
     TreesitterContextBottom = { underline = true, sp = colors.gutter },
     -- Treesitter-context separator line.

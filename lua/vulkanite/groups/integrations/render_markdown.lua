@@ -9,7 +9,7 @@ function M.get(colors, opts)
     -- Render-markdown level-two heading.
     RenderMarkdownH2 = { fg = colors.accent, bold = true },
     -- Render-markdown level-three heading.
-    RenderMarkdownH3 = { fg = colors.teal, bold = true },
+    RenderMarkdownH3 = { fg = colors.accent_secondary, bold = true },
     -- Render-markdown level-four heading.
     RenderMarkdownH4 = { fg = colors.ok, bold = true },
     -- Render-markdown level-five heading.
@@ -19,7 +19,7 @@ function M.get(colors, opts)
     -- Render-markdown fenced code block background.
     RenderMarkdownCode = { bg = colors.bg_alt },
     -- Render-markdown inline code span.
-    RenderMarkdownCodeInline = { fg = colors.yellow, bg = colors.bg_alt },
+    RenderMarkdownCodeInline = { fg = colors.match, bg = colors.bg_alt },
     -- Render-markdown horizontal rule dash.
     RenderMarkdownDash = { fg = colors.comment },
     -- Render-markdown list bullet.

@@ -13,7 +13,7 @@ function M.get(colors, opts)
     -- Telescope prompt input area.
     TelescopePromptNormal = { fg = colors.fg, bg = colors.bg_alt },
     -- Telescope prompt input border.
-    TelescopePromptBorder = { fg = colors.teal, bg = colors.bg_alt },
+    TelescopePromptBorder = { fg = colors.accent_secondary, bg = colors.bg_alt },
     -- Telescope prompt prefix icon.
     TelescopePromptPrefix = { fg = colors.accent },
     -- Telescope currently selected result row.
@@ -21,7 +21,7 @@ function M.get(colors, opts)
     -- Telescope selection caret beside the current result.
     TelescopeSelectionCaret = { fg = colors.accent },
     -- Telescope characters matched by the query.
-    TelescopeMatching = { fg = colors.yellow, bold = true },
+    TelescopeMatching = { fg = colors.match, bold = true },
     -- Telescope preview line for the current result.
     TelescopePreviewLine = { link = "CursorLine" },
   }

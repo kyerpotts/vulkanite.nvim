@@ -13,7 +13,7 @@ function M.get(colors, opts)
     -- Notify border for debug notifications.
     NotifyDEBUGBorder = { fg = colors.comment },
     -- Notify border for trace notifications.
-    NotifyTRACEBorder = { fg = colors.teal },
+    NotifyTRACEBorder = { fg = colors.accent_secondary },
     -- Notify icon for error notifications.
     NotifyERRORIcon = { fg = colors.error },
     -- Notify icon for warning notifications.
@@ -23,7 +23,7 @@ function M.get(colors, opts)
     -- Notify icon for debug notifications.
     NotifyDEBUGIcon = { fg = colors.comment },
     -- Notify icon for trace notifications.
-    NotifyTRACEIcon = { fg = colors.purple },
+    NotifyTRACEIcon = { fg = colors.icon },
     -- Notify title for error notifications.
     NotifyERRORTitle = { fg = colors.error, bold = true },
     -- Notify title for warning notifications.
@@ -33,7 +33,7 @@ function M.get(colors, opts)
     -- Notify title for debug notifications.
     NotifyDEBUGTitle = { fg = colors.comment, bold = true },
     -- Notify title for trace notifications.
-    NotifyTRACETitle = { fg = colors.teal, bold = true },
+    NotifyTRACETitle = { fg = colors.accent_secondary, bold = true },
   }
 end
 

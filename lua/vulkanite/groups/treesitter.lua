@@ -24,9 +24,9 @@ function M.setup(colors, opts)
     -- Tree-sitter string literals.
     ["@string"] = { link = "String" },
     -- Tree-sitter documentation strings.
-    ["@string.documentation"] = { link = "String" },
+    ["@string.documentation"] = { fg = colors.syntax.documentation },
     -- Tree-sitter regular-expression strings.
-    ["@string.regexp"] = { fg = colors.hint },
+    ["@string.regexp"] = { fg = colors.syntax.special },
     -- Tree-sitter string escape sequences.
     ["@string.escape"] = { link = "SpecialChar" },
     -- Tree-sitter special strings.
@@ -58,8 +58,12 @@ function M.setup(colors, opts)
     ["@function.method"] = { link = "Function" },
     -- Tree-sitter method calls.
     ["@function.method.call"] = { link = "Function" },
-    -- Tree-sitter constructors.
-    ["@constructor"] = { fg = colors.accent },
+    -- Tree-sitter constructors; isolated from overlapping function-call captures.
+    ["@constructor"] = vim.tbl_extend(
+      "force",
+      { fg = colors.syntax.type, italic = true, nocombine = true },
+      opts.styles.types
+    ),
     -- Tree-sitter operators.
     ["@operator"] = { link = "Operator" },
 
@@ -100,34 +104,34 @@ function M.setup(colors, opts)
     -- Tree-sitter type names.
     ["@type"] = { link = "Type" },
     -- Tree-sitter built-in type names.
-    ["@type.builtin"] = { fg = colors.yellow, italic = true },
+    ["@type.builtin"] = { link = "Type" },
     -- Tree-sitter type definitions.
     ["@type.definition"] = { link = "Typedef" },
     -- Tree-sitter type qualifiers.
     ["@type.qualifier"] = { link = "Keyword" },
     -- Tree-sitter variables.
-    ["@variable"] = vim.tbl_extend("force", { fg = colors.value }, opts.styles.variables),
+    ["@variable"] = vim.tbl_extend("force", { fg = colors.syntax.variable }, opts.styles.variables),
     -- Tree-sitter built-in variables.
-    ["@variable.builtin"] = { fg = colors.value, italic = true },
+    ["@variable.builtin"] = { link = "@variable" },
     -- Tree-sitter object or record members.
-    ["@variable.member"] = { fg = colors.fg },
+    ["@variable.member"] = { fg = colors.syntax.property },
     -- Tree-sitter function parameters.
-    ["@variable.parameter"] = { fg = colors.fg },
+    ["@variable.parameter"] = { fg = colors.syntax.parameter },
     -- Tree-sitter properties.
-    ["@property"] = { fg = colors.fg },
+    ["@property"] = { fg = colors.syntax.property },
     -- Tree-sitter modules and namespaces.
-    ["@module"] = { fg = colors.value },
+    ["@module"] = { fg = colors.syntax.module },
     -- Tree-sitter built-in modules and namespaces.
-    ["@module.builtin"] = { fg = colors.value, italic = true },
+    ["@module.builtin"] = { link = "@module" },
     -- Tree-sitter labels.
     ["@label"] = { link = "Label" },
 
     -- Tree-sitter markup or language tags.
-    ["@tag"] = { fg = colors.value },
+    ["@tag"] = { fg = colors.syntax.tag },
     -- Tree-sitter tag attributes.
-    ["@tag.attribute"] = { fg = colors.yellow },
+    ["@tag.attribute"] = { fg = colors.syntax.variable },
     -- Tree-sitter tag delimiters.
-    ["@tag.delimiter"] = { fg = colors.teal },
+    ["@tag.delimiter"] = { fg = colors.syntax.punctuation },
 
     -- Legacy Tree-sitter namespace capture.
     ["@namespace"] = { link = "@module" },
@@ -140,7 +144,7 @@ function M.setup(colors, opts)
     -- Legacy Tree-sitter method call capture.
     ["@method.call"] = { link = "@function.method.call" },
     -- Legacy Tree-sitter plain text capture.
-    ["@text"] = { fg = colors.fg },
+    ["@text"] = { fg = colors.ui.fg },
     -- Legacy Tree-sitter bold text capture.
     ["@text.strong"] = { bold = true },
     -- Legacy Tree-sitter italic text capture.

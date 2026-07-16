@@ -15,7 +15,7 @@ function M.get(colors, opts)
     -- Neo-tree file names.
     NeoTreeFileName = { fg = colors.fg },
     -- Neo-tree opened file name.
-    NeoTreeFileNameOpened = { fg = colors.teal, bold = true },
+    NeoTreeFileNameOpened = { fg = colors.accent_secondary, bold = true },
     -- Neo-tree git marker for added files.
     NeoTreeGitAdded = { link = "Added" },
     -- Neo-tree git marker for modified files.

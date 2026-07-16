@@ -10,18 +10,16 @@ local function apply_highlights(groups)
 end
 
 local function apply_terminal_colors(colors)
-  for index, color in ipairs(colors.terminal) do
-    vim.g["terminal_color_" .. (index - 1)] = color
+  for index = 0, 15 do
+    vim.g["terminal_color_" .. index] = colors and colors.terminal[index + 1] or nil
   end
 end
 
 function M.setup(opts)
   local colors = colors_mod.setup(opts)
-  local groups = groups_mod.setup(colors, opts)
+  local groups = groups_mod.setup(colors.roles, opts)
 
-  if vim.g.colors_name then
-    vim.cmd("highlight clear")
-  end
+  vim.cmd("highlight clear")
 
   vim.o.termguicolors = true
   vim.g.colors_name = "vulkanite"
@@ -29,9 +27,7 @@ function M.setup(opts)
   opts.on_highlights(groups, colors)
   apply_highlights(groups)
 
-  if opts.terminal_colors then
-    apply_terminal_colors(colors)
-  end
+  apply_terminal_colors(opts.terminal_colors and colors or nil)
 end
 
 return M

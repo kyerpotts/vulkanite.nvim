@@ -13,7 +13,7 @@ function M.get(colors, opts)
     -- Nvim-tree folder names.
     NvimTreeFolderName = { fg = colors.accent },
     -- Nvim-tree opened folder names.
-    NvimTreeOpenedFolderName = { fg = colors.teal, bold = true },
+    NvimTreeOpenedFolderName = { fg = colors.accent_secondary, bold = true },
     -- Nvim-tree empty folder names.
     NvimTreeEmptyFolderName = { fg = colors.comment },
     -- Nvim-tree root folder name.

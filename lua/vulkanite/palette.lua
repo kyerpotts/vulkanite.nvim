@@ -1,48 +1,45 @@
 local palette = {
-  base00 = "#0f1416",
-  base01 = "#0f1416",
-  base02 = "#5c6370",
-  base03 = "#5c6370",
-  base04 = "#abb2bf",
-  base05 = "#f8fdff",
-  base06 = "#f8fdff",
-  base07 = "#f8fdff",
-  base08 = "#e05f64",
-  base09 = "#e03f32",
-  base0A = "#8fe0fa",
-  base0B = "#8be086",
-  base0C = "#567e96",
-  base0D = "#8fe0fa",
-  base0E = "#37868b",
-  base0F = "#37868b",
-  comment = "#8e969a",
-  orange = "#e0af73",
-  purple = "#7b78aa",
+  dark_black = "#0f1416",
+  soft_black = "#151b1e",
+  slate_grey = "#5c6370",
+  comment_grey = "#8e969a",
+  light_grey = "#abb2bf",
+  pale_grey = "#dce5e9",
+  coral_red = "#e05f64",
+  vivid_red = "#e03f32",
+  yellow = "#e0af68",
+  sky_blue = "#76c7e3",
+  bright_green = "#8be086",
+  muted_blue = "#567e96",
+  bright_blue = "#8fe0fa",
+  dark_teal = "#37868b",
+  bright_teal = "#4fa3a6",
+  purple = "#9083B9",
 }
 
-local aliases = {
-  bg = palette.base00,
-  bg_alt = palette.base01,
-  bg_float = palette.base01,
-  fg = palette.base05,
-  fg_dim = palette.base04,
-  comment = palette.comment,
-  gutter = palette.base03,
-  red = palette.base09,
-  value = palette.base08,
-  orange = palette.orange,
-  yellow = palette.base0A,
-  green = palette.base0B,
-  cyan = palette.base0C,
-  blue = palette.base0D,
-  teal = palette.base0E,
-  purple = palette.purple,
+palette.base16 = {
+  base00 = palette.dark_black,
+  base01 = palette.soft_black,
+  base02 = palette.slate_grey,
+  base03 = palette.comment_grey,
+  base04 = palette.light_grey,
+  base05 = palette.pale_grey,
+  base06 = palette.pale_grey,
+  base07 = palette.pale_grey,
+  base08 = palette.coral_red,
+  base09 = palette.vivid_red,
+  base0A = palette.sky_blue,
+  base0B = palette.bright_green,
+  base0C = palette.muted_blue,
+  base0D = palette.bright_blue,
+  base0E = palette.dark_teal,
+  base0F = palette.bright_teal,
 }
 
 local M = {}
 
 function M.get()
-  return vim.tbl_deep_extend("force", vim.deepcopy(palette), aliases)
+  return vim.deepcopy(palette)
 end
 
 return M

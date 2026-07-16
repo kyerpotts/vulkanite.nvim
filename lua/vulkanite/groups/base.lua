@@ -1,218 +1,226 @@
 local M = {}
 
 function M.setup(colors, opts)
-  local normal_bg = colors.bg
+  local normal_bg = colors.ui.bg
   if opts.transparent then
     normal_bg = nil
   end
 
   return {
     -- Default text and background for ordinary editor buffers.
-    Normal = { fg = colors.fg, bg = normal_bg },
+    Normal = { fg = colors.ui.fg, bg = normal_bg },
     -- Default text and background for non-current editor windows.
-    NormalNC = { fg = colors.fg_dim, bg = normal_bg },
+    NormalNC = { fg = colors.ui.fg_dim, bg = normal_bg },
     -- Default text and background for floating windows.
-    NormalFloat = { fg = colors.fg, bg = colors.bg_float },
+    NormalFloat = { fg = colors.ui.fg, bg = colors.ui.bg_float },
     -- Border color for floating windows.
-    FloatBorder = { fg = colors.fg, bg = colors.bg_float },
+    FloatBorder = { fg = colors.ui.border, bg = colors.ui.bg_float },
     -- Title text shown in floating window borders.
-    FloatTitle = { fg = colors.accent, bg = colors.bg_float },
+    FloatTitle = { fg = colors.accent.primary, bg = colors.ui.bg_float },
     -- Background for columns highlighted by 'colorcolumn'.
-    ColorColumn = { bg = colors.bg_alt },
+    ColorColumn = { bg = colors.ui.bg_alt },
     -- Placeholder text hidden behind conceal syntax.
-    Conceal = { fg = colors.accent },
+    Conceal = { fg = colors.accent.primary },
     -- Character under the terminal cursor.
-    Cursor = { fg = colors.bg, bg = colors.fg },
+    Cursor = { fg = colors.ui.bg, bg = colors.ui.fg },
     -- Background for the screen column containing the cursor.
-    CursorColumn = { bg = colors.bg_alt },
+    CursorColumn = { bg = colors.ui.bg_alt },
     -- Background for the screen line containing the cursor.
-    CursorLine = { bg = colors.bg },
+    CursorLine = { bg = colors.ui.bg_alt },
     -- Line number for the screen line containing the cursor.
-    CursorLineNr = { fg = colors.fg, bg = colors.bg },
+    CursorLineNr = { fg = colors.accent.primary, bold = true },
     -- Directory names in file-oriented buffers.
-    Directory = { fg = colors.accent },
+    Directory = { fg = colors.accent.primary },
     -- Filler tildes after the end of a buffer.
-    EndOfBuffer = { fg = colors.bg },
+    EndOfBuffer = { fg = colors.ui.bg },
     -- Error messages printed by Vim commands.
-    ErrorMsg = { fg = colors.error, bold = true },
+    ErrorMsg = { fg = colors.diagnostic.error, bold = true },
     -- Fold column markers beside folded text.
-    FoldColumn = { fg = colors.hint, bg = normal_bg },
+    FoldColumn = { fg = colors.diagnostic.hint, bg = normal_bg },
     -- Folded text replacement lines.
-    Folded = { fg = colors.gutter, bg = colors.bg_alt },
+    Folded = { fg = colors.ui.gutter, bg = colors.ui.bg_alt },
+    -- Current match selected by an active search.
+    CurSearch = {
+      fg = colors.ui.bg_alt,
+      bg = colors.diagnostic.warn,
+      nocombine = true,
+    },
     -- Current incremental-search match.
-    IncSearch = { fg = colors.bg_alt, bg = colors.value },
+    IncSearch = { link = "CurSearch" },
     -- Absolute line numbers.
-    LineNr = { fg = colors.gutter },
+    LineNr = { fg = colors.ui.gutter },
     -- Relative line numbers above the cursor line.
-    LineNrAbove = { fg = colors.gutter },
+    LineNrAbove = { fg = colors.ui.gutter },
     -- Relative line numbers below the cursor line.
-    LineNrBelow = { fg = colors.gutter },
+    LineNrBelow = { fg = colors.ui.gutter },
     -- Matching bracket or paired delimiter under the cursor.
-    MatchParen = { fg = colors.bg, bg = colors.gutter, bold = true },
+    MatchParen = { fg = colors.ui.fg_bright, bg = colors.ui.gutter, bold = true },
     -- Mode and recording messages on the command line.
-    ModeMsg = { fg = colors.ok },
+    ModeMsg = { fg = colors.diagnostic.ok },
     -- Continuation prompts such as -- More --.
-    MoreMsg = { fg = colors.ok },
+    MoreMsg = { fg = colors.diagnostic.ok },
     -- Non-text markers such as listchars and end-of-buffer glyphs.
-    NonText = { fg = colors.gutter },
+    NonText = { fg = colors.ui.gutter },
     -- Popup menu body used by completion menus.
-    Pmenu = { fg = colors.fg, bg = colors.bg_alt },
+    Pmenu = { fg = colors.ui.fg, bg = colors.ui.bg_alt },
     -- Currently selected item in a popup menu.
-    PmenuSel = { fg = colors.bg, bg = colors.selection },
+    PmenuSel = { fg = colors.ui.fg_bright, bg = colors.ui.selection },
     -- Scrollbar track in popup menus.
-    PmenuSbar = { bg = colors.bg_alt },
+    PmenuSbar = { bg = colors.ui.bg_alt },
     -- Scrollbar thumb in popup menus.
-    PmenuThumb = { bg = colors.gutter },
+    PmenuThumb = { bg = colors.ui.gutter },
     -- Prompt text for yes/no and other questions.
-    Question = { fg = colors.accent },
+    Question = { fg = colors.accent.primary },
     -- Active entry in the quickfix list.
-    QuickFixLine = { bg = colors.selection },
+    QuickFixLine = { fg = colors.ui.fg_bright, bg = colors.ui.selection },
     -- Search matches for / and ? commands.
-    Search = { fg = colors.bg_alt, bg = colors.yellow },
+    Search = { fg = colors.ui.bg_alt, bg = colors.accent.match, nocombine = true },
+    -- Replacement text during a substitute preview.
+    Substitute = { link = "Search" },
     -- Sign column beside line numbers.
-    SignColumn = { fg = colors.gutter, bg = normal_bg },
+    SignColumn = { fg = colors.ui.gutter, bg = normal_bg },
     -- Unprintable and special-key text shown by Vim.
-    SpecialKey = { fg = colors.gutter },
+    SpecialKey = { fg = colors.ui.gutter },
     -- Misspelled words.
-    SpellBad = { undercurl = true, sp = colors.error },
+    SpellBad = { undercurl = true, sp = colors.diagnostic.error },
     -- Spelling words that should start with a capital.
-    SpellCap = { undercurl = true, sp = colors.accent },
+    SpellCap = { undercurl = true, sp = colors.accent.primary },
     -- Spelling words local to another region.
-    SpellLocal = { undercurl = true, sp = colors.teal },
+    SpellLocal = { undercurl = true, sp = colors.accent.secondary },
     -- Rare spelling words.
-    SpellRare = { undercurl = true, sp = colors.teal },
+    SpellRare = { undercurl = true, sp = colors.accent.secondary },
     -- Status line for the current window.
-    StatusLine = { fg = colors.fg, bg = colors.gutter },
+    StatusLine = { fg = colors.ui.fg, bg = colors.ui.gutter },
     -- Lowercase alias used by some plugins for the current status line.
-    Statusline = { fg = colors.fg, bg = colors.gutter },
+    Statusline = { fg = colors.ui.fg, bg = colors.ui.gutter },
     -- Status line for non-current windows.
-    StatusLineNC = { fg = colors.fg_dim, bg = colors.bg_alt },
+    StatusLineNC = { fg = colors.ui.fg_dim, bg = colors.ui.bg_alt },
     -- Inactive tab-page labels.
-    TabLine = { fg = colors.gutter, bg = colors.bg_alt },
+    TabLine = { fg = colors.ui.gutter, bg = colors.ui.bg_alt },
     -- Background fill after tab-page labels.
-    TabLineFill = { fg = colors.gutter, bg = colors.bg_alt },
+    TabLineFill = { fg = colors.ui.gutter, bg = colors.ui.bg_alt },
     -- Active tab-page label.
-    TabLineSel = { fg = colors.ok, bg = colors.bg_alt },
+    TabLineSel = { fg = colors.diagnostic.ok, bg = colors.ui.bg_alt },
     -- Titles for buffers, quickfix lists, and plugin headings.
-    Title = { fg = colors.accent },
+    Title = { fg = colors.accent.primary },
     -- Legacy vertical split separator.
-    VertSplit = { fg = colors.fg, bg = normal_bg },
+    VertSplit = { link = "WinSeparator" },
     -- Selected text in Visual mode.
-    Visual = { fg = colors.bg, bg = colors.selection },
+    Visual = { fg = colors.ui.fg_bright, bg = colors.ui.selection },
     -- Visual selection when Vim does not own the GUI selection.
-    VisualNOS = { fg = colors.bg, bg = colors.selection },
+    VisualNOS = { fg = colors.ui.fg_bright, bg = colors.ui.selection },
     -- Warning messages printed by Vim commands.
-    WarningMsg = { fg = colors.warn },
+    WarningMsg = { fg = colors.diagnostic.warn },
     -- Whitespace markers shown by listchars.
-    Whitespace = { fg = colors.gutter },
+    Whitespace = { fg = colors.ui.gutter },
     -- Active item in command-line completion wildmenu.
-    WildMenu = { fg = colors.value, bg = colors.yellow },
+    WildMenu = { fg = colors.ui.fg_bright, bg = colors.ui.selection },
     -- Window separators between splits.
-    WinSeparator = { fg = colors.gutter },
+    WinSeparator = { fg = colors.ui.separator },
 
     -- Source comments and documentation comments.
-    Comment = vim.tbl_extend("force", { fg = colors.comment }, opts.styles.comments),
+    Comment = vim.tbl_extend("force", { fg = colors.syntax.comment }, opts.styles.comments),
     -- Constants, enum members, and other fixed values.
-    Constant = { fg = colors.value },
+    Constant = vim.tbl_extend("force", { fg = colors.syntax.constant }, opts.styles.constants),
     -- String literals.
-    String = vim.tbl_extend("force", { fg = colors.ok }, opts.styles.strings),
+    String = vim.tbl_extend("force", { fg = colors.syntax.string }, opts.styles.strings),
     -- Character literals.
-    Character = { fg = colors.value },
+    Character = { fg = colors.syntax.literal },
     -- Integer literals.
-    Number = { fg = colors.value },
+    Number = { fg = colors.syntax.literal },
     -- Boolean literals.
-    Boolean = { fg = colors.value },
+    Boolean = { fg = colors.syntax.literal },
     -- Floating-point literals.
-    Float = { fg = colors.value },
+    Float = { fg = colors.syntax.literal },
     -- Variable and identifier names without a more specific group.
-    Identifier = { fg = colors.value },
+    Identifier = { fg = colors.syntax.variable },
     -- Function and method declarations or references.
-    Function = vim.tbl_extend("force", { fg = colors.accent }, opts.styles.functions),
+    Function = vim.tbl_extend("force", { fg = colors.syntax.func }, opts.styles.functions),
     -- General language statements without a more specific group.
-    Statement = vim.tbl_extend("force", { fg = colors.value }, opts.styles.keywords),
+    Statement = vim.tbl_extend("force", { fg = colors.syntax.keyword }, opts.styles.keywords),
     -- Conditional keywords such as if, else, and switch.
-    Conditional = { fg = colors.teal },
+    Conditional = { link = "Statement" },
     -- Loop keywords such as for, while, and repeat.
-    Repeat = { fg = colors.yellow },
+    Repeat = { link = "Statement" },
     -- Labels used by goto-like language constructs.
-    Label = { fg = colors.yellow },
+    Label = { fg = colors.accent.match },
     -- Operators and symbolic language punctuation.
-    Operator = { fg = colors.teal },
+    Operator = { fg = colors.syntax.operator },
     -- Reserved keywords without a more specific group.
-    Keyword = { fg = colors.teal },
+    Keyword = { link = "Statement" },
     -- Exception-handling keywords and exception syntax.
-    Exception = { fg = colors.error },
+    Exception = { link = "Statement" },
     -- Preprocessor directives and compiler directives.
-    PreProc = { fg = colors.yellow },
+    PreProc = { fg = colors.accent.match },
     -- Include, import, and require directives.
-    Include = { fg = colors.accent },
+    Include = { fg = colors.accent.primary },
     -- Macro definition directives.
-    Define = { fg = colors.teal },
+    Define = { link = "Statement" },
     -- Text beyond a configured line-length limit.
-    TooLong = { fg = colors.error },
+    TooLong = { fg = colors.diagnostic.warn },
     -- Macro invocations and macro names.
-    Macro = { fg = colors.value },
+    Macro = { fg = colors.syntax.special },
     -- Preprocessor conditionals such as ifdef and endif.
-    PreCondit = { fg = colors.yellow },
+    PreCondit = { fg = colors.accent.match },
     -- Type names and type annotations.
-    Type = { fg = colors.yellow },
+    Type = vim.tbl_extend("force", { fg = colors.syntax.type }, opts.styles.types),
     -- Storage-class keywords such as static, const, and mut.
-    StorageClass = { fg = colors.yellow },
+    StorageClass = { link = "Statement" },
     -- Structured type keywords and names.
-    Structure = { fg = colors.teal },
+    Structure = { link = "Type" },
     -- Typedef and type-alias declarations.
-    Typedef = { fg = colors.yellow },
+    Typedef = { link = "Type" },
     -- Special syntax that does not fit another group.
-    Special = { fg = colors.hint },
+    Special = { fg = colors.syntax.special },
     -- Special characters and escape-like character syntax.
-    SpecialChar = { fg = colors.teal },
+    SpecialChar = { fg = colors.syntax.special },
     -- Markup or language tags.
-    Tag = { fg = colors.yellow },
+    Tag = { fg = colors.syntax.tag },
     -- Delimiters such as commas, braces, and parentheses.
-    Delimiter = { fg = colors.teal },
+    Delimiter = { fg = colors.syntax.punctuation },
     -- Special comments; linked to normal comments.
     SpecialComment = { link = "Comment" },
     -- Debugging statements and debug-only syntax.
-    Debug = { fg = colors.value },
+    Debug = { fg = colors.diagnostic.info },
     -- Underlined text such as links.
-    Underlined = { fg = colors.value, underline = true },
+    Underlined = { fg = colors.accent.primary, underline = true },
     -- Ignored syntax that should recede from normal text.
-    Ignore = { fg = colors.gutter },
+    Ignore = { fg = colors.ui.gutter },
     -- Generic error text from syntax highlighting.
-    Error = { fg = colors.error, bold = true },
+    Error = { fg = colors.diagnostic.error, bold = true },
     -- TODO, FIXME, and similar task annotations.
-    Todo = { fg = colors.yellow, bg = colors.bg_alt, bold = true },
+    Todo = { fg = colors.accent.match, bg = colors.ui.bg_alt, bold = true },
 
     -- Diagnostic error text from Neovim diagnostics.
-    DiagnosticError = { fg = colors.error },
+    DiagnosticError = { fg = colors.diagnostic.error },
     -- Diagnostic warning text from Neovim diagnostics.
-    DiagnosticWarn = { fg = colors.warn },
+    DiagnosticWarn = { fg = colors.diagnostic.warn },
     -- Diagnostic informational text from Neovim diagnostics.
-    DiagnosticInfo = { fg = colors.info },
+    DiagnosticInfo = { fg = colors.diagnostic.info },
     -- Diagnostic hint text from Neovim diagnostics.
-    DiagnosticHint = { fg = colors.hint },
+    DiagnosticHint = { fg = colors.diagnostic.hint },
     -- Diagnostic success text from Neovim diagnostics.
-    DiagnosticOk = { fg = colors.ok },
+    DiagnosticOk = { fg = colors.diagnostic.ok },
     -- Undercurl for ranges covered by error diagnostics.
-    DiagnosticUnderlineError = { undercurl = true, sp = colors.error },
+    DiagnosticUnderlineError = { undercurl = true, sp = colors.diagnostic.error },
     -- Undercurl for ranges covered by warning diagnostics.
-    DiagnosticUnderlineWarn = { undercurl = true, sp = colors.warn },
+    DiagnosticUnderlineWarn = { undercurl = true, sp = colors.diagnostic.warn },
     -- Undercurl for ranges covered by informational diagnostics.
-    DiagnosticUnderlineInfo = { undercurl = true, sp = colors.info },
+    DiagnosticUnderlineInfo = { undercurl = true, sp = colors.diagnostic.info },
     -- Undercurl for ranges covered by hint diagnostics.
-    DiagnosticUnderlineHint = { undercurl = true, sp = colors.hint },
+    DiagnosticUnderlineHint = { undercurl = true, sp = colors.diagnostic.hint },
     -- Undercurl for ranges covered by success diagnostics.
-    DiagnosticUnderlineOk = { undercurl = true, sp = colors.ok },
+    DiagnosticUnderlineOk = { undercurl = true, sp = colors.diagnostic.ok },
     -- Inline virtual text attached to error diagnostics.
-    DiagnosticVirtualTextError = { fg = colors.error, bg = colors.bg_alt },
+    DiagnosticVirtualTextError = { fg = colors.diagnostic.error, bg = colors.ui.bg_alt },
     -- Inline virtual text attached to warning diagnostics.
-    DiagnosticVirtualTextWarn = { fg = colors.warn, bg = colors.bg_alt },
+    DiagnosticVirtualTextWarn = { fg = colors.diagnostic.warn, bg = colors.ui.bg_alt },
     -- Inline virtual text attached to informational diagnostics.
-    DiagnosticVirtualTextInfo = { fg = colors.info, bg = colors.bg_alt },
+    DiagnosticVirtualTextInfo = { fg = colors.diagnostic.info, bg = colors.ui.bg_alt },
     -- Inline virtual text attached to hint diagnostics.
-    DiagnosticVirtualTextHint = { fg = colors.hint, bg = colors.bg_alt },
+    DiagnosticVirtualTextHint = { fg = colors.diagnostic.hint, bg = colors.ui.bg_alt },
     -- Inline virtual text attached to success diagnostics.
-    DiagnosticVirtualTextOk = { fg = colors.ok, bg = colors.bg_alt },
+    DiagnosticVirtualTextOk = { fg = colors.diagnostic.ok, bg = colors.ui.bg_alt },
     -- Floating-window diagnostic errors.
     DiagnosticFloatingError = { link = "DiagnosticError" },
     -- Floating-window diagnostic warnings.
@@ -235,36 +243,34 @@ function M.setup(colors, opts)
     DiagnosticSignOk = { link = "DiagnosticOk" },
 
     -- Added lines in diffs.
-    DiffAdd = { fg = colors.ok, bg = colors.bg_alt },
+    DiffAdd = { fg = colors.diff.add, bg = colors.ui.bg_alt },
     -- Changed lines in diffs.
-    DiffChange = { fg = colors.yellow, bg = colors.bg_alt },
+    DiffChange = { fg = colors.diff.change, bg = colors.ui.bg_alt },
     -- Deleted lines in diffs.
-    DiffDelete = { fg = colors.value, bg = colors.bg_alt },
+    DiffDelete = { fg = colors.diff.delete, bg = colors.ui.bg_alt },
     -- Changed text within a changed diff line.
-    DiffText = { fg = colors.info, bg = colors.gutter },
+    DiffText = { fg = colors.ui.fg_bright, bg = colors.ui.gutter, bold = true },
     -- Added text in plugins that use semantic diff groups.
-    Added = { fg = colors.ok },
+    Added = { fg = colors.diff.add },
     -- Changed text in plugins that use semantic diff groups.
-    Changed = { fg = colors.yellow },
+    Changed = { fg = colors.diff.change },
     -- Removed text in plugins that use semantic diff groups.
-    Removed = { fg = colors.value },
-
-    TSNamespace = { fg = colors.value },
+    Removed = { fg = colors.diff.delete },
 
     -- Text ranges referenced by LSP document highlights.
-    -- LspReferenceText = { underline = true, sp = colors.value },
-    -- -- Read-access ranges referenced by LSP document highlights.
-    -- LspReferenceRead = { underline = true, sp = colors.value },
-    -- -- Write-access ranges referenced by LSP document highlights.
-    -- LspReferenceWrite = { underline = true, sp = colors.value },
+    LspReferenceText = { underline = true, sp = colors.accent.primary },
+    -- Read-access ranges referenced by LSP document highlights.
+    LspReferenceRead = { underline = true, sp = colors.accent.primary },
+    -- Write-access ranges referenced by LSP document highlights.
+    LspReferenceWrite = { underline = true, sp = colors.accent.primary },
     -- Inline LSP inlay hints.
-    LspInlayHint = { fg = colors.gutter, italic = true },
+    LspInlayHint = { fg = colors.ui.gutter, italic = true },
     -- LSP code-lens virtual text.
-    LspCodeLens = { fg = colors.comment },
+    LspCodeLens = { fg = colors.ui.comment },
     -- Separator text between LSP code-lens items.
-    LspCodeLensSeparator = { fg = colors.gutter },
+    LspCodeLensSeparator = { fg = colors.ui.gutter },
     -- Active parameter in LSP signature help.
-    LspSignatureActiveParameter = { fg = colors.yellow, bold = false },
+    LspSignatureActiveParameter = { fg = colors.accent.match, underline = true },
   }
 end
 

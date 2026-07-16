@@ -23,7 +23,7 @@ function M.get(colors, opts)
     -- Noice incomplete progress segment.
     NoiceFormatProgressTodo = { fg = colors.gutter },
     -- Noice LSP progress client name.
-    NoiceLspProgressClient = { fg = colors.teal },
+    NoiceLspProgressClient = { fg = colors.accent_secondary },
     -- Noice LSP progress title text.
     NoiceLspProgressTitle = { fg = colors.fg },
     -- Noice virtual text messages.

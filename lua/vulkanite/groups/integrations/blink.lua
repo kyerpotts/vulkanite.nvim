@@ -17,7 +17,7 @@ function M.get(colors, opts)
     -- Blink.cmp characters in labels that match the query.
     BlinkCmpLabelMatch = { fg = colors.accent, bold = true },
     -- Blink.cmp completion kind icon.
-    BlinkCmpKind = { fg = colors.purple },
+    BlinkCmpKind = { fg = colors.icon },
     -- Blink.cmp completion item source name.
     BlinkCmpSource = { fg = colors.comment },
     -- Blink.cmp documentation popup body.

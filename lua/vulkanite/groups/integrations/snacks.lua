@@ -6,12 +6,12 @@ local function add_indent_groups(groups, colors)
   local rainbow = colors.rainbow
     or {
       colors.value,
-      colors.hint,
-      colors.yellow,
+      colors.warn,
+      colors.match,
       colors.ok,
-      colors.teal,
+      colors.accent_secondary,
       colors.accent,
-      colors.hint,
+      colors.icon,
     }
 
   for index = 1, 7 do
@@ -58,13 +58,13 @@ function M.get(colors, opts)
     -- Snacks dashboard header art or title block.
     SnacksDashboardHeader = { fg = colors.accent },
     -- Snacks dashboard item icons.
-    SnacksDashboardIcon = { fg = colors.purple },
+    SnacksDashboardIcon = { fg = colors.icon },
     -- Snacks dashboard shortcut keys.
     SnacksDashboardKey = { fg = colors.value },
     -- Snacks dashboard special symbols.
-    SnacksDashboardSpecial = { fg = colors.teal },
+    SnacksDashboardSpecial = { fg = colors.accent_secondary },
     -- Snacks dashboard section titles.
-    SnacksDashboardTitle = { fg = colors.yellow, bold = true },
+    SnacksDashboardTitle = { fg = colors.match, bold = true },
 
     -- Snacks indent guide default color.
     SnacksIndent = { fg = colors.gutter },
@@ -89,19 +89,15 @@ function M.get(colors, opts)
     -- Snacks picker ignored git-status entries.
     SnacksPickerGitStatusIgnored = { fg = colors.gutter },
     -- Snacks picker modified git-status entries.
-    SnacksPickerGitStatusModified = { fg = colors.yellow },
+    SnacksPickerGitStatusModified = { fg = colors.match },
     -- Snacks picker renamed git-status entries.
-    SnacksPickerGitStatusRenamed = { fg = colors.teal },
+    SnacksPickerGitStatusRenamed = { fg = colors.accent_secondary },
     -- Snacks picker untracked git-status entries.
-    SnacksPickerGitStatusUntracked = { fg = colors.teal },
-    -- Snacks picker GitHub issue entries.
-    SnacksPickerGitHubIssue = { fg = colors.info },
-    -- Snacks picker GitHub label entries.
-    SnacksPickerGitHubLabel = { fg = colors.teal },
-    -- Snacks picker GitHub pull-request entries.
-    SnacksPickerGitHubPullRequest = { fg = colors.ok },
+    SnacksPickerGitStatusUntracked = { fg = colors.accent_secondary },
+    -- Snacks picker Git issue references.
+    SnacksPickerGitIssue = { fg = colors.info },
     -- Snacks picker source or file icons.
-    SnacksPickerIcon = { fg = colors.purple },
+    SnacksPickerIcon = { fg = colors.icon },
     -- Snacks picker input window body.
     SnacksPickerInput = { link = "NormalFloat" },
     -- Snacks picker input window border.
@@ -109,7 +105,7 @@ function M.get(colors, opts)
     -- Snacks picker cursor line in the input list.
     SnacksPickerInputCursorLine = { link = "CursorLine" },
     -- Snacks picker matched query text.
-    SnacksPickerMatch = { fg = colors.yellow, bold = true },
+    SnacksPickerMatch = { fg = colors.match, bold = true },
     -- Snacks picker preview cursor line.
     SnacksPickerPreviewCursorLine = { link = "CursorLine" },
     -- Snacks picker selected item marker.
@@ -122,7 +118,7 @@ function M.get(colors, opts)
     -- Snacks input prompt border.
     SnacksInputBorder = { link = "FloatBorder" },
     -- Snacks input prompt icon.
-    SnacksInputIcon = { fg = colors.purple },
+    SnacksInputIcon = { fg = colors.icon },
     -- Snacks input prompt title.
     SnacksInputTitle = { link = "FloatTitle" },
 
@@ -131,9 +127,7 @@ function M.get(colors, opts)
     -- Snacks profiler informational icon.
     SnacksProfilerIconInfo = { fg = colors.info },
     -- Snacks profiler trace icon.
-    SnacksProfilerIconTrace = { fg = colors.purple },
-    -- Snacks profiler title text.
-    SnacksProfilerTitle = { fg = colors.accent, bold = true },
+    SnacksProfilerIconTrace = { fg = colors.icon },
   }
 
   add_indent_groups(groups, colors)
