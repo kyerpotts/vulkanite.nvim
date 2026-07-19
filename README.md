@@ -1,6 +1,8 @@
-# Vulkanite
-
 [![CI](https://github.com/kyerpotts/vulkanite.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/kyerpotts/vulkanite.nvim/actions/workflows/ci.yml)
+
+![Vulkanite Banner](assets/Vulkanite_Banner.png)
+
+# Vulkanite
 
 Vulkanite is a dark Neovim colorscheme for real cool dudes. If you're a cool dude and you like cool dude colorschemes, maybe Vulkanite is for you.
 
