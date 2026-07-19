@@ -44,7 +44,7 @@ Verification:
 rg -n 'squidmilk|kyerpotts|vulkan-colors|vulkanite\.nvim' .
 ```
 
-All remaining references must be intentional, including the legacy colorscheme alias.
+Any remaining `vulkan-colors` reference must be part of this verification command; the legacy name is not supported.
 
 ### Supported Neovim versions
 
@@ -247,8 +247,8 @@ The explicitly post-release checks above do not block v0.1.0.
 - [x] Configure StyLua 2.5.2 in check mode in CI.
 - [x] Configure `git diff --check` in CI.
 - [x] Deliberately track Neovim stable and nightly; nightly is non-blocking.
-- [ ] Confirm the workflow passes after it is pushed to GitHub.
-- [ ] Add a status badge to the README after CI is stable.
+- [x] Confirm the workflow passes after it is pushed to GitHub.
+- [x] Add a status badge to the README after CI is stable.
 
 ### Regression coverage
 
@@ -261,7 +261,6 @@ The explicitly post-release checks above do not block v0.1.0.
 - [x] Test palette uniqueness and Base16 completeness.
 - [x] Test public color and highlight callbacks.
 - [x] Test terminal, transparency, and integration reloads across option changes.
-- [x] Test the legacy `vulkan-colors` colorscheme alias.
 
 ## 6. Release preparation
 
@@ -279,6 +278,8 @@ The explicitly post-release checks above do not block v0.1.0.
 - [x] Draft release notes at `docs/release-notes-v0.1.0.md` describing the visual identity, integrations, and override interface.
 - [x] Finalize release notes after owner, license, minimum Neovim version, and compatibility decisions are resolved.
 - [x] Maintain an in-repository changelog.
+- [x] Add `docs/CONTRIBUTING.md` with local setup, verification, and pull-request guidance.
+- [x] Configure branch protection for `main`, requiring pull requests and passing CI checks.
 - [ ] Add GitHub repository description, topics, and screenshots.
 - [ ] Confirm the default branch contains the release commit.
 - [ ] Create and push the annotated tag.
@@ -315,6 +316,6 @@ Expected results:
 - [x] Minimum supported Neovim version: 0.10.
 - [x] Nightly Neovim failures are non-blocking.
 - [x] `:help vulkanite` is required for v0.1.0.
-- [x] Retain the legacy `vulkan-colors` colorscheme alias for v0.1.0.
+- [x] Ship only the canonical `vulkanite` colorscheme name.
 - [x] Retain British `grey` spelling in the public palette interface.
 - [x] Squash-merge feature branches after rebasing them onto `main`.

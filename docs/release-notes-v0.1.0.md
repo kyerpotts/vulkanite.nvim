@@ -49,7 +49,7 @@ Vulkanite supports:
 - `on_highlights` overrides before highlights are applied.
 - A public named palette and a complete nested Base16 mapping.
 
-## Compatibility
+## Requirements
 
 Vulkanite requires Neovim 0.10 or later with true-color support. Neovim 0.12
 and later can install it through the experimental built-in `vim.pack`; earlier
@@ -58,9 +58,8 @@ supported versions require another plugin manager or a manual runtime-path insta
 The canonical repository is <https://github.com/kyerpotts/vulkanite.nvim>.
 Vulkanite is released under the MIT License.
 
-The colorscheme entry point is `vulkanite`. The legacy `vulkan-colors`
-colorscheme name remains available as a compatibility alias for v0.1.0. The
-public authored palette retains its British `grey` key spelling.
+The colorscheme entry point is `vulkanite`. The public authored palette retains
+its British `grey` key spelling.
 
 Integrations define highlight groups without imposing integration-specific
 minimum plugin versions. Unsupported or renamed upstream groups are harmless
