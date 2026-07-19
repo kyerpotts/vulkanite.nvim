@@ -1,25 +1,21 @@
 # Vulkanite
 
-## Identity
+[![CI](https://github.com/kyerpotts/vulkanite.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/kyerpotts/vulkanite.nvim/actions/workflows/ci.yml)
 
-Vulkanite is a dark Neovim colorscheme with coral-heavy values, cool blue and teal structure, and typography that distinguishes functions, types, and comments.
+Vulkanite is a dark Neovim colorscheme built around coral reds, cool blues, and teals. Functions are bright blue and italic, types are bold sky blue, strings are green, and comments stay soft and understated.
 
 ![Vulkanite editing Go](assets/vulkanite-editor.png)
 
-![Vulkanite completion and diagnostics](assets/vulkanite-completion.png)
+<p>
+  <img src="assets/vulkanite-completion.png" alt="Vulkanite completion and diagnostics" width="49%">
+  <img src="assets/vulkanite-picker.png" alt="Vulkanite picker" width="49%">
+</p>
 
-![Vulkanite picker](assets/vulkanite-picker.png)
+## Getting started
 
-Captured in Ghostty with CaskaydiaCove NF at 10 pt and Neovim 0.12.3. Visible integrations include blink.cmp, Snacks picker, and lualine.nvim.
+Neovim 0.10 or later and true-color support is required.
 
-Release screenshot fixtures are available in [`demo/`](demo/README.md).
-
-## Requirements
-
-- Neovim 0.10 or later with true-color support.
-- A plugin manager. Neovim 0.12 and later include the experimental native [`vim.pack`](https://neovim.io/doc/user/pack/#vim.pack) manager.
-
-## Installation with lazy.nvim
+### lazy.nvim
 
 ```lua
 {
@@ -33,14 +29,9 @@ Release screenshot fixtures are available in [`demo/`](demo/README.md).
 }
 ```
 
-## Installation with LazyVim
+### LazyVim
 
-Current LazyVim releases require Neovim 0.11.2 or later. LazyVim users should
-let LazyVim own the final colorscheme load. Calling `vim.cmd.colorscheme("vulkanite")`
-only from the colorscheme plugin spec can be
-overwritten later by LazyVim's configured default theme.
-
-Place this in `lua/plugins/vulkanite.lua`:
+Current LazyVim releases require Neovim 0.11.2 or later. Add this to `lua/plugins/vulkanite.lua` and let LazyVim handle the final colorscheme load:
 
 ```lua
 return {
@@ -60,29 +51,7 @@ return {
 }
 ```
 
-For visual QA, force every bundled integration on while testing:
-
-```lua
-return {
-  {
-    "kyerpotts/vulkanite.nvim",
-    lazy = false,
-    priority = 1000,
-    main = "vulkanite",
-    opts = {
-      plugins = { all = true },
-    },
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "vulkanite",
-    },
-  },
-}
-```
-
-## Installation with native `vim.pack.add()` (Neovim 0.12+)
+### Native `vim.pack` (Neovim 0.12+)
 
 ```lua
 vim.pack.add({
@@ -93,134 +62,51 @@ require("vulkanite").setup({})
 vim.cmd.colorscheme("vulkanite")
 ```
 
-## Local development install
+## Configuration
 
-For LazyVim local testing, use the worktree or checkout path and still set
-`LazyVim/LazyVim.opts.colorscheme`:
-
-```lua
-return {
-  {
-    dir = "/path/to/vulkanite.nvim",
-    name = "vulkanite.nvim",
-    lazy = false,
-    priority = 1000,
-    main = "vulkanite",
-    opts = {
-      plugins = { all = true },
-    },
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "vulkanite",
-    },
-  },
-}
-```
-
-## Usage
-
-```vim
-colorscheme vulkanite
-```
-
-Lua form:
-
-```lua
-vim.cmd.colorscheme("vulkanite")
-```
-
-Full documentation is available from Neovim:
-
-```vim
-:help vulkanite
-```
-
-Configure before loading the colorscheme:
+Call `setup()` before loading the colorscheme if you want to change defaults:
 
 ```lua
 require("vulkanite").setup({
   transparent = true,
+  terminal_colors = true,
+  styles = {
+    comments = { italic = false },
+    functions = { italic = true },
+    types = { bold = true },
+  },
 })
+
 vim.cmd.colorscheme("vulkanite")
 ```
 
-## Setup defaults
+## Integrations
+
+Vulkanite automatically detects supported plugins installed through lazy.nvim or `vim.pack`. Built-in highlights cover:
+
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [blink.cmp](https://github.com/saghen/blink.cmp)
+- [which-key.nvim](https://github.com/folke/which-key.nvim)
+- [lazy.nvim](https://github.com/folke/lazy.nvim)
+- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) and [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
+- [noice.nvim](https://github.com/folke/noice.nvim) and [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [snacks.nvim](https://github.com/folke/snacks.nvim)
+- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
+- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+
+You can enable or disable individual integrations through `plugins`:
 
 ```lua
 require("vulkanite").setup({
-  transparent = false,
-  terminal_colors = true,
-  styles = {
-    comments = { italic = true },
-    keywords = {},
-    functions = { italic = true },
-    types = { bold = true },
-    constants = { bold = true },
-    strings = {},
-    variables = {},
-  },
   plugins = {
-    auto = true,
-    all = false,
-    gitsigns = "auto",
-    telescope = "auto",
-    cmp = "auto",
-    blink = "auto",
-    which_key = "auto",
-    lazy = "auto",
-    neo_tree = "auto",
-    nvim_tree = "auto",
-    noice = "auto",
-    notify = "auto",
-    snacks = "auto",
-    treesitter_context = "auto",
-    render_markdown = "auto",
-  },
-  on_colors = function() end,
-  on_highlights = function() end,
-})
-```
-
-Style tables are deep-merged with these defaults. To disable a default style,
-set it explicitly to `false`, for example:
-
-```lua
-require("vulkanite").setup({
-  styles = {
-    comments = { italic = false },
-    functions = { italic = false },
-    types = { bold = false },
-    constants = { bold = false },
+    telescope = true,
+    neo_tree = false,
   },
 })
 ```
 
-## Supported integrations
-
-Bundled integrations default to `"auto"`: Vulkanite enables them when `lazy.nvim` or `vim.pack` reports a matching installed plugin. Explicit `true` or `false` values take precedence over all other settings. Otherwise, `plugins.all = true` enables the integration, followed by package-manager detection when `plugins.auto = true`. Set `plugins.auto = false` to disable detection.
-
-| Plugin | Key | Note |
-| --- | --- | --- |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | `gitsigns` | Git add, change, delete, staged, and untracked indicators. |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | `telescope` | Picker, prompt, preview, and selection highlights. |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | `cmp` | Completion menu and item kind highlights. |
-| [blink.cmp](https://github.com/saghen/blink.cmp) | `blink` | Completion menu and documentation highlights. |
-| [which-key.nvim](https://github.com/folke/which-key.nvim) | `which_key` | Which-key popup highlights. |
-| [lazy.nvim](https://github.com/folke/lazy.nvim) | `lazy` | Lazy plugin manager UI highlights. |
-| [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) | `neo_tree` | Neo-tree file explorer highlights. |
-| [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua) | `nvim_tree` | Nvim-tree file explorer highlights. |
-| [noice.nvim](https://github.com/folke/noice.nvim) | `noice` | Command line, popup, and message UI highlights. |
-| [nvim-notify](https://github.com/rcarriga/nvim-notify) | `notify` | Notification title, border, and icon highlights. |
-| [snacks.nvim](https://github.com/folke/snacks.nvim) | `snacks` | Dashboard, picker, notifier, input, and indent highlights. |
-| [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) | `treesitter_context` | Sticky context and line-number highlights. |
-| [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | `render_markdown` | Headings, code, lists, quotes, rules, and tables. |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | `lualine` | Use the bundled `vulkanite` lualine theme. |
-
-## Lualine
-
-Load Vulkanite before configuring lualine so the bundled theme can reuse resolved `on_colors` overrides. The recommended eager colorscheme installation snippets above provide this ordering.
+For lualine, load Vulkanite first and use the bundled theme:
 
 ```lua
 require("lualine").setup({
@@ -228,39 +114,17 @@ require("lualine").setup({
 })
 ```
 
-## Overrides
+## Customization
 
-### Override colors
-
-`on_colors` runs once per colorscheme load and receives the resolved public color table before internal semantic roles and highlights are generated. Requiring the bundled lualine theme does not invoke it.
+Use `on_colors` for semantic colors and `on_highlights` for individual groups:
 
 ```lua
 require("vulkanite").setup({
   on_colors = function(colors)
     colors.accent = "#8be086"
-    colors.bg_float = "#1b2327"
   end,
-})
-```
-
-Supported public color keys are:
-
-- UI: `bg`, `bg_alt`, `bg_float`, `fg`, `fg_bright`, `fg_dim`, `comment`, `gutter`, and `selection`.
-- Syntax and accents: `value`, `docstring`, `accent`, `sky_blue`, `teal`, `bright_teal`, `purple`, and `ok`.
-- Diagnostics: `error`, `warn`, `info`, and `hint`.
-- Terminal: `terminal`, a 16-entry ANSI color array.
-
-`colors.roles` is derived after `on_colors` returns and is internal to highlight generation. Override the public keys above rather than mutating internal roles.
-
-### Override highlights
-
-`on_highlights` receives the highlight table and the resolved colors before highlights are applied.
-
-```lua
-require("vulkanite").setup({
   on_highlights = function(highlights, colors)
     highlights.NormalFloat = { fg = colors.fg, bg = colors.bg }
-    highlights.CursorLine = { bg = colors.bg_alt }
   end,
 })
 ```
@@ -269,51 +133,27 @@ require("vulkanite").setup({
 
 ![Vulkanite authored palette](assets/palette.svg)
 
+The named 16-color palette and its complete Base16 mapping are available from
+Lua:
+
 ```lua
 local palette = require("vulkanite.palette").get()
+local base16 = palette.base16
 ```
 
-The public palette contains exactly 16 authored colors, named for their visual
-appearance rather than their Base16 roles:
+## Documentation
 
-| Name | Hex | Name | Hex |
-| --- | --- | --- | --- |
-| `dark_black` | `#0f1416` | `soft_black` | `#151b1e` |
-| `slate_grey` | `#5c6370` | `comment_grey` | `#8e969a` |
-| `light_grey` | `#abb2bf` | `pale_grey` | `#dce5e9` |
-| `coral_red` | `#e05f64` | `vivid_red` | `#e03f32` |
-| `yellow` | `#e0af68` | `sky_blue` | `#76c7e3` |
-| `bright_green` | `#8be086` | `bright_blue` | `#8fe0fa` |
-| `muted_blue` | `#567e96` | `dark_teal` | `#37868b` |
-| `bright_teal` | `#4fa3a6` | `purple` | `#9083B9` |
+The full option reference, integration keys, callback behavior, palette names,
+and compatibility notes are available inside Neovim:
 
-A complete Base16 compatibility mapping remains available under `palette.base16`. Compatibility roles may intentionally reuse an authored color:
-
-The British `grey` spelling in `slate_grey`, `comment_grey`, `light_grey`, and
-`pale_grey` is part of the public palette interface for v0.1.0.
-
-```lua
-palette.base16.base00 == palette.dark_black
-palette.base16.base0A == palette.sky_blue
-palette.base16.base0D == palette.bright_blue
+```vim
+:help vulkanite
 ```
 
-The default syntax identity keeps variables, parameters, and literals coral red;
-properties and members in the bright foreground; constants bold purple; strings green; documentation
-strings and warnings yellow; keywords upright dark teal; functions italic bright blue; types
-bold upright sky blue; constructors bold italic sky blue; operators in the bright foreground;
-punctuation light grey; special syntax muted blue; and comments
-grey and italic.
+You can also read [`doc/vulkanite.txt`](doc/vulkanite.txt) directly.
 
-## Changelog
+## Project
 
-Release history is maintained in [`CHANGELOG.md`](CHANGELOG.md).
-
-## Contributing
-
-Open pull requests from feature branches rebased onto the latest `main`.
-Accepted pull requests are squash-merged.
-
-## License
-
-Vulkanite is released under the [MIT License](LICENSE).
+Want to help? Read the [contributing guide](docs/CONTRIBUTING.md). You can also
+find the [changelog](CHANGELOG.md), [release notes](docs/release-notes-v0.1.0.md),
+and [MIT license](LICENSE) here.
