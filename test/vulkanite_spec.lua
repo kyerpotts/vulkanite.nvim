@@ -126,14 +126,8 @@ local function run()
   end
 
   vulkanite.setup({})
-  package.loaded["vulkan-colors"] = nil
   vim.cmd.colorscheme("vulkanite")
   assert_eq(vim.g.colors_name, "vulkanite", "colorscheme name")
-  assert_eq(
-    package.loaded["vulkan-colors"],
-    nil,
-    "vulkan-colors module stays unloaded after colorscheme vulkanite"
-  )
   assert_truthy(vim.api.nvim_get_hl(0, { name = "Normal" }).fg, "Normal fg set")
   assert_truthy(vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg, "DiagnosticError fg set")
   assert_link_or_fg("@function", "Function", "@function")
@@ -662,7 +656,6 @@ local function run()
   assert_eq(customized_lualine.normal.a.bg, "#ff00ff", "lualine uses resolved color overrides")
 
   reset_vulkanite()
-  package.loaded["vulkan-colors"] = nil
   package.loaded["lualine.themes.vulkanite"] = nil
   local lualine_theme = require("lualine.themes.vulkanite")
   assert_eq(type(lualine_theme), "table", "lualine theme is a table")
@@ -673,25 +666,6 @@ local function run()
   assert_eq(lualine_theme.terminal.a.bg, "#4fa3a6", "terminal mode uses bright teal")
   assert_eq(lualine_theme.inactive.a.fg, "#abb2bf", "inactive lualine uses dim foreground")
   assert_eq(lualine_theme.inactive.a.bg, "#151b1e", "inactive lualine uses soft black")
-
-  reset_vulkanite()
-  package.loaded["vulkan-colors"] = nil
-  require("vulkanite").load()
-  assert_eq(
-    package.loaded["vulkan-colors"],
-    nil,
-    "vulkan-colors module stays unloaded after loading vulkanite"
-  )
-
-  reset_vulkanite()
-  package.loaded["vulkan-colors"] = nil
-  vim.cmd.colorscheme("vulkan-colors")
-  assert_eq(vim.g.colors_name, "vulkanite", "compat colorscheme reports vulkanite")
-  assert_eq(
-    package.loaded["vulkan-colors"],
-    nil,
-    "compat colorscheme does not load vulkan-colors module"
-  )
 end
 
 local ok, err = xpcall(run, debug.traceback)

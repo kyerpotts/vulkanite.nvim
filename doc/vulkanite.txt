@@ -12,8 +12,7 @@ CONTENTS                                                   *vulkanite-contents*
 7. Color overrides..............................|vulkanite-colors|
 8. Highlight overrides..........................|vulkanite-highlights|
 9. Palette......................................|vulkanite-palette|
-10. Compatibility...............................|vulkanite-compatibility|
-11. License.....................................|vulkanite-license|
+10. License.....................................|vulkanite-license|
 
 ==============================================================================
 1. INTRODUCTION                                         *vulkanite-introduction*
@@ -233,15 +232,7 @@ v0.1.0. A complete Base16 compatibility mapping is available at
 `palette.base16`.
 
 ==============================================================================
-10. COMPATIBILITY                                 *vulkanite-compatibility*
-
-The supported colorscheme name is `vulkanite`. For v0.1.0, the legacy command
-`:colorscheme vulkan-colors` remains as a compatibility alias and loads the
-same Vulkanite implementation. There is no legacy `require("vulkan-colors")`
-Lua module.
-
-==============================================================================
-11. LICENSE                                             *vulkanite-license*
+10. LICENSE                                             *vulkanite-license*
 
 Vulkanite is released under the MIT License. See the LICENSE file in the
 repository root.

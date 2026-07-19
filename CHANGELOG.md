@@ -15,7 +15,6 @@ release versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Configurable styles, transparent backgrounds, terminal colors, and public color and highlight callbacks.
 - Automatic and explicit highlight integrations for the plugins documented in the README.
 - Bundled lualine theme, named 16-color palette, and complete Base16 compatibility mapping.
-- Legacy `vulkan-colors` colorscheme alias for the v0.1.0 compatibility window.
 - Neovim help under `:help vulkanite`.
 
 [Unreleased]: https://github.com/kyerpotts/vulkanite.nvim/compare/v0.1.0...HEAD
