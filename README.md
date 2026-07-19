@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/kyerpotts/vulkanite.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/kyerpotts/vulkanite.nvim/actions/workflows/ci.yml)
 
-Vulkanite is a dark Neovim colorscheme built around coral reds, cool blues, and teals. Functions are bright blue and italic, types are bold sky blue, strings are green, and comments stay soft and understated.
+Vulkanite is a dark Neovim colorscheme for real cool dudes. If you're a cool dude and you like cool dude colorschemes, maybe Vulkanite is for you.
 
 ![Vulkanite editing Go](assets/vulkanite-editor.png)
 
