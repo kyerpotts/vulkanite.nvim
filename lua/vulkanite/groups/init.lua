@@ -103,11 +103,16 @@ local function plugin_enabled(plugins, detected, key)
   if type(value) == "table" and type(value.enabled) == "boolean" then
     return value.enabled
   end
-  if plugins.all then
-    return true
+  if value == "auto" then
+    return plugins.all or detected[key] == true
   end
 
-  return detected[key] == true
+  error(
+    ("invalid plugins.%s value %s; expected true, false, 'auto', or { enabled = boolean }"):format(
+      key,
+      vim.inspect(value)
+    )
+  )
 end
 
 local M = {}

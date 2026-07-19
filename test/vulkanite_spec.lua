@@ -567,6 +567,16 @@ local function run()
   assert_unset("SnacksPickerMatch", "auto mode leaves undetected snacks unset")
 
   reset_vulkanite()
+  local valid_plugin_value, plugin_value_error = pcall(require("vulkanite").load, {
+    plugins = { snacks = "invalid" },
+  })
+  assert_eq(valid_plugin_value, false, "invalid plugin values are rejected")
+  assert_truthy(
+    plugin_value_error:match("invalid plugins%.snacks value"),
+    "invalid plugin values report the integration key"
+  )
+
+  reset_vulkanite()
   local old_pack = vim.pack
   vim.pack = {
     get = function()
