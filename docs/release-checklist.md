@@ -280,7 +280,7 @@ The explicitly post-release checks above do not block v0.1.0.
 - [x] Maintain an in-repository changelog.
 - [x] Add `docs/CONTRIBUTING.md` with local setup, verification, and pull-request guidance.
 - [x] Configure branch protection for `main`, requiring pull requests and passing CI checks.
-- [ ] Add GitHub repository description, topics, and screenshots.
+- [x] Add GitHub repository description, topics, and screenshots.
 - [ ] Confirm the default branch contains the release commit.
 - [ ] Create and push the annotated tag.
 - [ ] Create the GitHub release from that tag.
