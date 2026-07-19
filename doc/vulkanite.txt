@@ -1,0 +1,249 @@
+*vulkanite.txt*              Vulkanite colorscheme              *vulkanite*
+
+==============================================================================
+CONTENTS                                                   *vulkanite-contents*
+
+1. Introduction.................................|vulkanite-introduction|
+2. Requirements.................................|vulkanite-requirements|
+3. Installation.................................|vulkanite-installation|
+4. Setup........................................|vulkanite-setup|
+5. Styles.......................................|vulkanite-styles|
+6. Integrations.................................|vulkanite-integrations|
+7. Color overrides..............................|vulkanite-colors|
+8. Highlight overrides..........................|vulkanite-highlights|
+9. Palette......................................|vulkanite-palette|
+10. Compatibility...............................|vulkanite-compatibility|
+11. License.....................................|vulkanite-license|
+
+==============================================================================
+1. INTRODUCTION                                         *vulkanite-introduction*
+
+Vulkanite is a dark colorscheme built around coral-red values, cool blue and
+teal structure, and typography that distinguishes functions, types, and
+comments.
+
+Load it with: >vim
+
+    colorscheme vulkanite
+<
+Configure Vulkanite before loading the colorscheme. See |vulkanite-setup|.
+
+==============================================================================
+2. REQUIREMENTS                                         *vulkanite-requirements*
+
+Vulkanite requires Neovim 0.10 or later and a terminal or GUI with true-color
+support. The experimental native |vim.pack| plugin manager is available in
+Neovim 0.12 and later; Neovim 0.10 and 0.11 users can install Vulkanite with
+another plugin manager or by adding the repository to 'runtimepath'.
+
+==============================================================================
+3. INSTALLATION                                         *vulkanite-installation*
+
+LAZY.NVIM ~
+
+Use an eager, high-priority plugin specification so Vulkanite loads before
+other UI plugins: >lua
+
+    {
+      "kyerpotts/vulkanite.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        require("vulkanite").setup({})
+        vim.cmd.colorscheme("vulkanite")
+      end,
+    }
+<
+LAZYVIM ~
+
+Let LazyVim own the final colorscheme load: >lua
+
+    return {
+      {
+        "kyerpotts/vulkanite.nvim",
+        lazy = false,
+        priority = 1000,
+        main = "vulkanite",
+        opts = {},
+      },
+      {
+        "LazyVim/LazyVim",
+        opts = { colorscheme = "vulkanite" },
+      },
+    }
+<
+VIM.PACK (NEOVIM 0.12+) ~
+
+Install with |vim.pack.add()|: >lua
+
+    vim.pack.add({
+      { src = "https://github.com/kyerpotts/vulkanite.nvim" },
+    })
+    require("vulkanite").setup({})
+    vim.cmd.colorscheme("vulkanite")
+<
+==============================================================================
+4. SETUP                                                   *vulkanite-setup*
+
+Call setup before loading the colorscheme: >lua
+
+    require("vulkanite").setup({
+      transparent = false,
+      terminal_colors = true,
+      styles = {
+        comments = { italic = true },
+        keywords = {},
+        functions = { italic = true },
+        types = { bold = true },
+        constants = { bold = true },
+        strings = {},
+        variables = {},
+      },
+      plugins = {
+        auto = true,
+        all = false,
+      },
+      on_colors = function(colors) end,
+      on_highlights = function(highlights, colors) end,
+    })
+<
+`transparent` removes the Normal and floating-window backgrounds.
+`terminal_colors` controls |terminal-config| colors 0 through 15.
+
+Options are reset to these defaults on every call to setup(). Passing options
+directly to require("vulkanite").load() temporarily extends the configured
+options for that load.
+
+==============================================================================
+5. STYLES                                                 *vulkanite-styles*
+
+Style tables are deep-merged with the defaults. Set a style attribute to false
+to disable a default: >lua
+
+    require("vulkanite").setup({
+      styles = {
+        comments = { italic = false },
+        functions = { italic = false },
+        types = { bold = false },
+        constants = { bold = false },
+      },
+    })
+<
+Supported style keys are `comments`, `keywords`, `functions`, `types`,
+`constants`, `strings`, and `variables`. Each accepts Neovim highlight
+attributes such as `bold`, `italic`, `underline`, and `undercurl`.
+
+==============================================================================
+6. INTEGRATIONS                                     *vulkanite-integrations*
+
+Bundled integration keys are:
+
+gitsigns              gitsigns.nvim
+ telescope             telescope.nvim
+ cmp                   nvim-cmp
+ blink                 blink.cmp
+ which_key             which-key.nvim
+ lazy                  lazy.nvim
+ neo_tree              neo-tree.nvim
+ nvim_tree             nvim-tree.lua
+ noice                 noice.nvim
+ notify                nvim-notify
+ snacks                snacks.nvim
+ treesitter_context    nvim-treesitter-context
+ render_markdown       render-markdown.nvim
+
+Each integration defaults to "auto". Explicit true or false values take
+precedence. Otherwise `plugins.all = true` enables it, followed by package
+manager detection when `plugins.auto = true`: >lua
+
+    require("vulkanite").setup({
+      plugins = {
+        auto = true,
+        all = false,
+        telescope = true,
+        cmp = false,
+      },
+    })
+<
+Automatic detection uses lazy.nvim or |vim.pack| when either manager reports a
+matching installed plugin. Integrations only define highlight groups; they do
+not install or configure plugins.
+
+LUALINE ~
+
+Load Vulkanite before lualine so its theme reuses resolved color overrides: >lua
+
+    require("lualine").setup({
+      options = { theme = "vulkanite" },
+    })
+<
+==============================================================================
+7. COLOR OVERRIDES                                       *vulkanite-colors*
+
+`on_colors` runs once per colorscheme load. It receives the public color table
+before internal semantic roles and highlights are generated: >lua
+
+    require("vulkanite").setup({
+      on_colors = function(colors)
+        colors.accent = "#8be086"
+        colors.bg_float = "#1b2327"
+      end,
+    })
+<
+Supported public keys:
+
+UI                    bg, bg_alt, bg_float, fg, fg_bright, fg_dim, comment,
+                      gutter, selection
+Syntax and accents    value, docstring, accent, sky_blue, teal, bright_teal,
+                      purple, ok
+Diagnostics           error, warn, info, hint
+Terminal              terminal (a 16-entry ANSI color array)
+
+`colors.roles` is internal. Override the public keys instead.
+
+==============================================================================
+8. HIGHLIGHT OVERRIDES                               *vulkanite-highlights*
+
+`on_highlights` receives the complete highlight table and resolved public
+colors immediately before highlights are applied: >lua
+
+    require("vulkanite").setup({
+      on_highlights = function(highlights, colors)
+        highlights.NormalFloat = { fg = colors.fg, bg = colors.bg }
+        highlights.CursorLine = { bg = colors.bg_alt }
+      end,
+    })
+<
+==============================================================================
+9. PALETTE                                               *vulkanite-palette*
+
+Access a copy of the authored palette with: >lua
+
+    local palette = require("vulkanite.palette").get()
+<
+The 16 authored color keys are:
+
+dark_black       soft_black       slate_grey       comment_grey
+light_grey       pale_grey        coral_red        vivid_red
+yellow           sky_blue         bright_green     muted_blue
+bright_blue      dark_teal        bright_teal       purple
+
+The British `grey` spelling is part of the public palette interface for
+v0.1.0. A complete Base16 compatibility mapping is available at
+`palette.base16`.
+
+==============================================================================
+10. COMPATIBILITY                                 *vulkanite-compatibility*
+
+The supported colorscheme name is `vulkanite`. For v0.1.0, the legacy command
+`:colorscheme vulkan-colors` remains as a compatibility alias and loads the
+same Vulkanite implementation. There is no legacy `require("vulkan-colors")`
+Lua module.
+
+==============================================================================
+11. LICENSE                                             *vulkanite-license*
+
+Vulkanite is released under the MIT License. See the LICENSE file in the
+repository root.
+
+vim:tw=78:ts=8:noet:ft=help:norl:

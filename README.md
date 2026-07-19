@@ -4,18 +4,26 @@
 
 Vulkanite is a dark Neovim colorscheme with coral-heavy values, cool blue and teal structure, and typography that distinguishes functions, types, and comments.
 
+![Vulkanite editing Go](assets/vulkanite-editor.png)
+
+![Vulkanite completion and diagnostics](assets/vulkanite-completion.png)
+
+![Vulkanite picker](assets/vulkanite-picker.png)
+
+Captured in Ghostty with CaskaydiaCove NF at 10 pt and Neovim 0.12.3. Visible integrations include blink.cmp, Snacks picker, and lualine.nvim.
+
 Release screenshot fixtures are available in [`demo/`](demo/README.md).
 
 ## Requirements
 
-- Neovim with true color support.
-- A plugin manager, or native `vim.pack` on modern Neovim versions where it is available.
+- Neovim 0.10 or later with true-color support.
+- A plugin manager. Neovim 0.12 and later include the experimental native [`vim.pack`](https://neovim.io/doc/user/pack/#vim.pack) manager.
 
 ## Installation with lazy.nvim
 
 ```lua
 {
-  "squidmilk/vulkanite.nvim",
+  "kyerpotts/vulkanite.nvim",
   lazy = false,
   priority = 1000,
   config = function()
@@ -27,8 +35,9 @@ Release screenshot fixtures are available in [`demo/`](demo/README.md).
 
 ## Installation with LazyVim
 
-LazyVim users should let LazyVim own the final colorscheme load. Calling
-`vim.cmd.colorscheme("vulkanite")` only from the colorscheme plugin spec can be
+Current LazyVim releases require Neovim 0.11.2 or later. LazyVim users should
+let LazyVim own the final colorscheme load. Calling `vim.cmd.colorscheme("vulkanite")`
+only from the colorscheme plugin spec can be
 overwritten later by LazyVim's configured default theme.
 
 Place this in `lua/plugins/vulkanite.lua`:
@@ -36,7 +45,7 @@ Place this in `lua/plugins/vulkanite.lua`:
 ```lua
 return {
   {
-    "squidmilk/vulkanite.nvim",
+    "kyerpotts/vulkanite.nvim",
     lazy = false,
     priority = 1000,
     main = "vulkanite",
@@ -56,7 +65,7 @@ For visual QA, force every bundled integration on while testing:
 ```lua
 return {
   {
-    "squidmilk/vulkanite.nvim",
+    "kyerpotts/vulkanite.nvim",
     lazy = false,
     priority = 1000,
     main = "vulkanite",
@@ -73,11 +82,11 @@ return {
 }
 ```
 
-## Installation with native `vim.pack.add()`
+## Installation with native `vim.pack.add()` (Neovim 0.12+)
 
 ```lua
 vim.pack.add({
-  { src = "https://github.com/squidmilk/vulkanite.nvim" },
+  { src = "https://github.com/kyerpotts/vulkanite.nvim" },
 })
 
 require("vulkanite").setup({})
@@ -120,6 +129,12 @@ Lua form:
 
 ```lua
 vim.cmd.colorscheme("vulkanite")
+```
+
+Full documentation is available from Neovim:
+
+```vim
+:help vulkanite
 ```
 
 Configure before loading the colorscheme:
@@ -274,6 +289,9 @@ appearance rather than their Base16 roles:
 
 A complete Base16 compatibility mapping remains available under `palette.base16`. Compatibility roles may intentionally reuse an authored color:
 
+The British `grey` spelling in `slate_grey`, `comment_grey`, `light_grey`, and
+`pale_grey` is part of the public palette interface for v0.1.0.
+
 ```lua
 palette.base16.base00 == palette.dark_black
 palette.base16.base0A == palette.sky_blue
@@ -286,3 +304,16 @@ strings and warnings yellow; keywords upright dark teal; functions italic bright
 bold upright sky blue; constructors bold italic sky blue; operators in the bright foreground;
 punctuation light grey; special syntax muted blue; and comments
 grey and italic.
+
+## Changelog
+
+Release history is maintained in [`CHANGELOG.md`](CHANGELOG.md).
+
+## Contributing
+
+Open pull requests from feature branches rebased onto the latest `main`.
+Accepted pull requests are squash-merged.
+
+## License
+
+Vulkanite is released under the [MIT License](LICENSE).

@@ -7,11 +7,14 @@ A task is complete only when its verification notes are satisfied.
 
 - [x] The palette exposes exactly 16 unique authored colors with a complete nested Base16 compatibility mapping.
 - [x] The default syntax identity is documented in the README.
-- [x] Functions and strings are upright, types and comments are italic, and constants are bold.
+- [x] Functions are italic, types are bold and upright, comments are italic, and strings are upright.
 - [x] Variables and value-like symbols retain the coral-red visual identity.
 - [x] The local headless test suite passes on Neovim 0.12.3.
+- [x] The headless suite and direct colorscheme smoke test pass locally on Neovim 0.10.0.
 - [x] The direct `colorscheme vulkanite` smoke test passes locally.
 - [x] StyLua and `git diff --check` pass locally.
+- [x] Generated helptags open `:help vulkanite` on Neovim 0.10.0 and 0.12.3.
+- [x] Every source fixture under `demo/` opens with Vulkanite and syntax highlighting enabled.
 
 These checks must be rerun after every release-blocking change.
 
@@ -19,10 +22,9 @@ These checks must be rerun after every release-blocking change.
 
 ### License
 
-- [ ] Choose the project license.
-  - Proposed default: MIT.
-- [ ] Add the license as `LICENSE` at the repository root.
-- [ ] Mention the license in the README.
+- [x] Choose the project license: MIT.
+- [x] Add the license as `LICENSE` at the repository root.
+- [x] Mention the license in the README.
 
 Verification:
 
@@ -31,10 +33,10 @@ Verification:
 
 ### Canonical repository identity
 
-- [ ] Decide whether the canonical repository is `squidmilk/vulkanite.nvim` or `kyerpotts/vulkanite.nvim`.
-- [ ] Update every installation URL to use the canonical owner.
-- [ ] Update the Git remote if the current remote is not canonical.
-- [ ] Search the repository for stale owner or repository names.
+- [x] Use `kyerpotts/vulkanite.nvim` as the canonical repository.
+- [x] Update every installation URL to use the canonical owner.
+- [x] Confirm the Git remote uses the canonical repository.
+- [x] Search the repository for stale owner or repository names.
 
 Verification:
 
@@ -46,10 +48,10 @@ All remaining references must be intentional, including the legacy colorscheme a
 
 ### Supported Neovim versions
 
-- [ ] Select the minimum supported Neovim version.
-- [ ] Verify the runtime and tests against that version.
-- [ ] Document the minimum version in the README.
-- [ ] Clarify which version first supports the documented `vim.pack` installation path.
+- [x] Support Neovim 0.10 and later.
+- [x] Verify the runtime and tests against Neovim 0.10.0.
+- [x] Document the minimum version in the README.
+- [x] Document that the built-in `vim.pack` installation path requires Neovim 0.12 or later.
 
 Verification:
 
@@ -70,10 +72,10 @@ Verification:
 ### Screenshots
 
 - [x] Add multi-language screenshot source fixtures under `demo/`.
-- [ ] Add a primary screenshot showing the normal editing experience.
-- [ ] Add at least one screenshot with completion, diagnostics, and a picker visible.
-- [ ] Record the font, terminal, and relevant Neovim plugins used for the screenshots.
-- [ ] Add the screenshots near the top of the README.
+- [x] Add a primary screenshot showing the normal editing experience.
+- [x] Add screenshots covering completion, diagnostics, and a picker.
+- [x] Record the font, terminal, and relevant Neovim plugins used for the screenshots.
+- [x] Add the screenshots near the top of the README.
 - [x] Add a hand-maintained palette swatch at `assets/palette.svg`.
 
 Suggested language coverage:
@@ -143,9 +145,9 @@ Verification:
 
 - [x] Split plain `lazy.nvim` installation from LazyVim installation.
 - [x] Keep LazyVim guidance about owning the final colorscheme load.
-- [ ] Verify every installation snippet in a clean configuration.
-- [ ] State the minimum Neovim version and true-color requirement.
-- [ ] Resolve all repository-owner references.
+- [x] Verify every installation snippet in a clean configuration.
+- [x] State the minimum Neovim version and true-color requirement.
+- [x] Resolve all repository-owner references.
 
 ### Integration table
 
@@ -154,7 +156,7 @@ Verification:
 - [x] Remove the unsupported gitsigns inline-blame claim.
 - [x] Remove the unsupported render-markdown checkbox and callout claims.
 - [x] Verify integration highlight names against current upstream plugin source; remove or rename stale cmp, which-key, and Snacks groups.
-- [ ] Note any integration requiring a minimum plugin version.
+- [x] Note that integrations do not declare plugin-specific minimum versions for v0.1.0.
 
 ### Configuration and overrides
 
@@ -171,13 +173,13 @@ Verification:
 - [x] Document every authored palette color, not only a subset.
 - [x] Keep the named palette and `palette.base16` mapping examples current.
 - [x] Add a palette swatch with names and hex values.
-- [ ] Decide whether British `grey` spelling is part of the permanent public interface.
+- [x] Retain British `grey` spelling as part of the v0.1.0 public palette interface.
 
 ### Vim help
 
-- [ ] Decide whether `:help vulkanite` is required for v0.1.0.
-- [ ] If required, add `doc/vulkanite.txt` covering installation, setup, styles, integrations, overrides, and palette access.
-- [ ] Generate helptags and verify the help file opens without errors.
+- [x] Require `:help vulkanite` for v0.1.0.
+- [x] Add `doc/vulkanite.txt` covering installation, setup, styles, integrations, overrides, and palette access.
+- [x] Generate helptags and verify the help file opens without errors.
 
 ## 4. Visual QA
 
@@ -185,53 +187,55 @@ Verification:
 
 Verify each language with Tree-sitter alone and with LSP semantic tokens enabled.
 
-- [ ] Variables, parameters, and literals remain recognizably coral red.
-- [ ] Properties and members are bright teal.
-- [ ] Constants and enum members are bold purple.
-- [ ] Imported functions and types preserve their semantic function/type styling.
-- [ ] Import keywords are visually distinct from imported symbols.
-- [ ] Functions and methods are upright bright blue.
-- [ ] Classes, structs, interfaces, enums, aliases, and built-in types are italic sky blue.
-- [ ] Keywords and control flow are consistently bold dark teal.
-- [ ] Operators and punctuation remain readable light grey.
-- [ ] Strings are upright green and documentation strings use authored yellow.
-- [ ] Comments and documentation comments are italic grey.
-- [ ] Escapes, regular expressions, decorators, and special syntax use muted blue consistently.
-- [ ] Errors remain distinguishable from coral variables and literals.
-- [ ] Readonly, default-library, and built-in modifiers do not add unexpected italics.
+- [x] Variables, parameters, and literals remain recognizably coral red.
+- [x] Properties and members are bright teal.
+- [x] Constants and enum members are bold purple.
+- [x] Imported functions and types preserve their semantic function/type styling.
+- [x] Import keywords are visually distinct from imported symbols.
+- [x] Functions and methods are italic bright blue.
+- [x] Classes, structs, interfaces, enums, aliases, and built-in types are bold upright sky blue.
+- [x] Keywords and control flow are consistently upright dark teal.
+- [x] Operators and punctuation remain readable light grey.
+- [x] Strings are upright green and documentation strings use authored yellow.
+- [x] Comments and documentation comments are italic grey.
+- [x] Escapes, regular expressions, decorators, and special syntax use muted blue consistently.
+- [x] Errors remain distinguishable from coral variables and literals.
+- [x] Readonly, default-library, and built-in modifiers do not add unexpected italics.
 
 ### Language matrix
 
-- [ ] Rust: structs, enums, traits, macros, lifetimes, attributes, and mutable bindings.
-- [ ] Go: structs, interfaces, methods, package names, imports, and constants.
-- [ ] TypeScript/JavaScript: imports, classes, interfaces, generics, decorators, properties, and JSX/TSX.
-- [ ] Python: imports, decorators, classes, methods, parameters, and type annotations.
-- [ ] Lua: modules, tables, functions, fields, built-ins, and strings.
-- [ ] Markdown: headings, emphasis, links, code blocks, lists, tables, and quotes.
+- [x] Rust: structs, enums, traits, macros, lifetimes, attributes, and mutable bindings.
+- [x] Go: structs, interfaces, methods, package names, imports, and constants.
+- [x] TypeScript/JavaScript: imports, classes, interfaces, generics, decorators, properties, and JSX/TSX.
+- [x] Python: imports, decorators, classes, methods, parameters, and type annotations.
+- [x] Lua: modules, tables, functions, fields, built-ins, and strings.
+- [x] Markdown: headings, emphasis, links, code blocks, lists, tables, and quotes.
 
 ### Editor and plugin UI
 
-- [ ] Visual selection, popup selection, quickfix selection, and wildmenu remain readable.
-- [ ] Cursor line and cursor line number are visible without dominating syntax.
-- [ ] Float borders and split separators remain subdued.
-- [ ] Search, incremental search, and matching delimiters are clear.
-- [ ] Diagnostics, virtual text, signs, and undercurls are distinguishable by severity.
-- [ ] Diff add/change/delete/text groups are readable.
-- [ ] Lualine modes are distinct: normal, insert, command, visual, replace, and terminal.
-- [ ] Completion menus remain readable in both nvim-cmp and blink.cmp.
-- [ ] Telescope and Snacks picker selections and matches are clear.
-- [ ] Neo-tree and nvim-tree states are distinguishable.
-- [ ] Notifications and Noice severity mappings are consistent.
-- [ ] Render Markdown groups match documented support.
+- [x] Visual selection, popup selection, quickfix selection, and wildmenu remain readable.
+- [x] Cursor line and cursor line number are visible without dominating syntax.
+- [x] Float borders and split separators remain subdued.
+- [x] Search, incremental search, and matching delimiters are clear.
+- [x] Diagnostics, virtual text, signs, and undercurls are distinguishable by severity.
+- [x] Diff add/change/delete/text groups are readable.
+- [x] Lualine modes are distinct: normal, insert, command, visual, replace, and terminal.
+- [x] Completion menus remain readable in both nvim-cmp and blink.cmp.
+- [x] Telescope and Snacks picker selections and matches are clear.
+- [x] Neo-tree and nvim-tree states are distinguishable.
+- [x] Notifications and Noice severity mappings are consistent.
+- [x] Render Markdown groups match documented support.
 
 ### Accessibility and terminals
 
-- [ ] Inspect the theme with protanopia, deuteranopia, and tritanopia simulation.
-- [ ] Pay particular attention to coral variables versus green strings.
-- [ ] Verify the theme in at least two terminals or GUIs.
-- [ ] Verify italics and bold styles with a font that supports both correctly.
+- [x] Inspect the theme with protanopia, deuteranopia, and tritanopia simulation.
+- [x] Pay particular attention to coral variables versus green strings.
+- [ ] Post-release: verify the theme in at least two terminals or GUIs after compatibility reports justify the matrix.
+- [ ] Post-release: verify italics and bold styles with a font that supports both correctly.
 - [x] Add automated contrast floors for normal text, comments, selections, keywords, and diagnostics.
-- [ ] Confirm the theme remains usable when terminal italics are disabled.
+- [ ] Post-release: confirm usability when terminal italics are disabled.
+
+The explicitly post-release checks above do not block v0.1.0.
 
 ## 5. Testing and automation
 
@@ -266,15 +270,15 @@ Verify each language with Tree-sitter alone and with LSP semantic tokens enabled
 - [x] Review the current diff for stale comments, dead role fields, misleading claims, and outdated integration groups.
 - [ ] Ensure every commit intended for `main` passes tests.
 - [ ] Avoid publishing the intermediate failing snapshot as part of the main branch history.
-- [ ] Decide whether to squash-merge or rebase the feature branch.
+- [x] Squash-merge the feature branch after rebasing it onto `main`.
 - [ ] Confirm `git status` is clean before tagging.
 
 ### Release metadata
 
-- [ ] Choose the first release version, provisionally `v0.1.0`.
+- [x] Use `v0.1.0` as the first release version.
 - [x] Draft release notes at `docs/release-notes-v0.1.0.md` describing the visual identity, integrations, and override interface.
-- [ ] Finalize release notes after owner, license, minimum Neovim version, screenshots, and compatibility decisions are resolved.
-- [ ] Add a changelog if releases will be tracked in-repository.
+- [x] Finalize release notes after owner, license, minimum Neovim version, and compatibility decisions are resolved.
+- [x] Maintain an in-repository changelog.
 - [ ] Add GitHub repository description, topics, and screenshots.
 - [ ] Confirm the default branch contains the release commit.
 - [ ] Create and push the annotated tag.
@@ -306,11 +310,11 @@ Expected results:
 
 ## Open decisions
 
-- [ ] Canonical GitHub owner: `squidmilk` or `kyerpotts`.
-- [ ] License.
-- [ ] Minimum supported Neovim version.
-- [ ] Whether nightly Neovim failures block a release.
-- [ ] Whether `:help vulkanite` is required for v0.1.0.
-- [ ] Whether the legacy `vulkan-colors` alias remains supported.
-- [ ] Whether British `grey` spelling is final in the public palette interface.
-- [ ] Whether the feature branch should be squash-merged or rebased.
+- [x] Canonical GitHub owner: `kyerpotts`.
+- [x] License: MIT.
+- [x] Minimum supported Neovim version: 0.10.
+- [x] Nightly Neovim failures are non-blocking.
+- [x] `:help vulkanite` is required for v0.1.0.
+- [x] Retain the legacy `vulkan-colors` colorscheme alias for v0.1.0.
+- [x] Retain British `grey` spelling in the public palette interface.
+- [x] Squash-merge feature branches after rebasing them onto `main`.

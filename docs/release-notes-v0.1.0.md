@@ -1,4 +1,4 @@
-# Vulkanite v0.1.0 release notes (draft)
+# Vulkanite v0.1.0 release notes
 
 Vulkanite is a dark Neovim colorscheme built around coral-red values, cool blue and teal structure, and typography that remains consistent across Tree-sitter and LSP semantic tokens.
 
@@ -8,9 +8,9 @@ Vulkanite is a dark Neovim colorscheme built around coral-red values, cool blue 
 - Bright-teal properties and members.
 - Bold purple constants and enum members.
 - Upright green strings and yellow documentation strings.
-- Bold dark-teal keywords and control flow.
-- Upright bright-blue functions and methods.
-- Italic sky-blue types, classes, structs, interfaces, enums, and aliases.
+- Upright dark-teal keywords and control flow.
+- Italic bright-blue functions and methods.
+- Bold upright sky-blue types, classes, structs, interfaces, enums, and aliases.
 - Light-grey operators and punctuation.
 - Muted-blue escapes, regular expressions, decorators, and special syntax.
 - Italic grey comments and documentation.
@@ -51,8 +51,17 @@ Vulkanite supports:
 
 ## Compatibility
 
-The colorscheme entry point is `vulkanite`. The legacy `vulkan-colors` colorscheme name remains available as a compatibility alias for this release, pending a final compatibility decision.
+Vulkanite requires Neovim 0.10 or later with true-color support. Neovim 0.12
+and later can install it through the experimental built-in `vim.pack`; earlier
+supported versions require another plugin manager or a manual runtime-path installation.
 
-## Before publishing
+The canonical repository is <https://github.com/kyerpotts/vulkanite.nvim>.
+Vulkanite is released under the MIT License.
 
-Replace this section with the final minimum Neovim version, canonical repository URL, license, screenshot links, and any known integration version requirements.
+The colorscheme entry point is `vulkanite`. The legacy `vulkan-colors`
+colorscheme name remains available as a compatibility alias for v0.1.0. The
+public authored palette retains its British `grey` key spelling.
+
+Integrations define highlight groups without imposing integration-specific
+minimum plugin versions. Unsupported or renamed upstream groups are harmless
+until the relevant plugin provides them.
