@@ -1,0 +1,50 @@
+name: Documentation issue
+description: Report missing, incorrect, or unclear documentation
+title: ""
+labels:
+  - documentation
+body:
+  - type: dropdown
+    id: location
+    attributes:
+      label: Documentation area
+      options:
+        - README or quick start
+        - Neovim help
+        - Contributing guide
+        - Installation instructions
+        - Configuration or integration reference
+        - Release notes or changelog
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Location
+      description: Link the page or provide the file path and section.
+      placeholder: README.md#configuration
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is unclear or incorrect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: Include proposed wording or an example when possible.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked the README and `:help vulkanite` for existing guidance.
+          required: true

@@ -1,0 +1,67 @@
+name: Feature request
+description: Suggest an integration, configuration option, or focused visual improvement
+title: ""
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Integration work is the project's highest priority. Baseline palette and syntax changes need strong issue-tracker demand or a clear visual-identity inconsistency.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Request type
+      options:
+        - New plugin integration
+        - Existing integration improvement
+        - Configuration or behavior
+        - Visual identity consistency
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: upstream
+    attributes:
+      label: Upstream plugin or reference
+      description: Link the relevant plugin repository, documentation, issue, or source when applicable.
+      placeholder: https://github.com/owner/plugin
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the user-facing problem rather than only the proposed implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Explain the smallest change that would solve the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: highlights
+    attributes:
+      label: Relevant highlights or visual evidence
+      description: Include upstream highlight groups, `:Inspect` output, and screenshots where relevant.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues for this request.
+          required: true
+        - label: I read the baseline colorscheme policy in the contributing guide.
+          required: true

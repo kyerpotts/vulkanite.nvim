@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Neovim ${{ matrix.neovim }}
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.neovim == 'nightly' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        neovim:
+          - v0.10.0
+          - stable
+          - nightly
+    steps:
+      - uses: actions/checkout@v7
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          version: ${{ matrix.neovim }}
+          neovim: true
+      - name: Run test suite
+        run: nvim --headless -u test/minimal_init.lua -S test/vulkanite_spec.lua +qa
+      - name: Run direct colorscheme smoke test
+        run: >-
+          nvim --headless -u NONE
+          -c 'set rtp^=.'
+          -c 'colorscheme vulkanite'
+          -c 'lua assert(vim.g.colors_name == "vulkanite")'
+          -c 'qa'
+
+  format:
+    name: Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: JohnnyMorganz/stylua-action@v5
+        with:
+          version: v2.5.2
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --check colors lua test demo/showcase.lua
+      - name: Check whitespace
+        run: git diff --check

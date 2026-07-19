@@ -1,0 +1,94 @@
+name: Bug report
+description: Report incorrect colors, highlights, configuration, or runtime behavior
+title: ""
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Please include enough detail to reproduce it in a minimal Neovim setup.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Core colorscheme
+        - Tree-sitter or syntax highlighting
+        - LSP semantic highlighting
+        - Plugin integration
+        - Configuration or reload behavior
+        - Installation or documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: neovim-version
+    attributes:
+      label: Neovim version
+      description: Paste the first line of `nvim --version`.
+      placeholder: NVIM v0.12.3
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Include your terminal or GUI, font, plugin manager, relevant plugins, and active LSP client.
+      placeholder: Ghostty, CaskaydiaCove NF, lazy.nvim, rust-analyzer
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Minimal configuration
+      description: Include the smallest Vulkanite setup that reproduces the problem.
+      render: lua
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: For highlight issues, include relevant `:Inspect` or `:verbose highlight` output when possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or additional context
+      description: Screenshots are strongly recommended for visual issues.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues for this problem.
+          required: true
+        - label: I can reproduce this with the canonical `vulkanite` colorscheme name.
+          required: true
