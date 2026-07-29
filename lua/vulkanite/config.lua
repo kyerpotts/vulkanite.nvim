@@ -7,6 +7,7 @@ M.integration_keys = {
   "blink",
   "which_key",
   "lazy",
+  "bufferline",
   "neo_tree",
   "nvim_tree",
   "noice",

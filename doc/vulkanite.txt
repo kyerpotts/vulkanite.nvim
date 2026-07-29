@@ -143,6 +143,7 @@ gitsigns              gitsigns.nvim
  blink                 blink.cmp
  which_key             which-key.nvim
  lazy                  lazy.nvim
+ bufferline            bufferline.nvim
  neo_tree              neo-tree.nvim
  nvim_tree             nvim-tree.lua
  noice                 noice.nvim
@@ -195,7 +196,7 @@ UI                    bg, bg_alt, bg_float, fg, fg_bright, fg_dim, comment,
                       gutter, selection
 Syntax and accents    value, docstring, accent, sky_blue, teal, bright_teal,
                       purple, ok
-Diagnostics           error, warn, info, hint
+Diagnostics           error, warn, info, hint, unnecessary
 Terminal              terminal (a 16-entry ANSI color array)
 
 `colors.roles` is internal. Override the public keys instead.

@@ -79,6 +79,7 @@ local integration_probe_groups = {
   "BlinkCmpLabelMatch",
   "WhichKey",
   "LazyH1",
+  "BufferLineBufferSelected",
   "NeoTreeDirectoryName",
   "NvimTreeFolderName",
   "NoiceCmdlinePopup",
@@ -190,6 +191,11 @@ local function run()
     vim.api.nvim_get_hl(0, { name = "CursorLineNr" }).fg,
     0x8fe0fa,
     "CursorLineNr marks the cursor line with the accent"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "TabLineSel" }).fg,
+    0x4fa3a6,
+    "TabLineSel marks the active tab with the secondary accent"
   )
   local search_highlight = vim.api.nvim_get_hl(0, { name = "Search", link = false })
   assert_eq(search_highlight.fg, 0x151b1e, "Search uses dark text")
@@ -344,6 +350,11 @@ local function run()
     "#e03f32",
     "diagnostic role is derived centrally"
   )
+  assert_eq(
+    semantic_colors.roles.diagnostic.unnecessary,
+    "#5c6370",
+    "unnecessary diagnostic role is derived centrally"
+  )
   assert_eq(semantic_colors.roles.accent.icon, "#9083B9", "icon role is derived centrally")
   assert_eq(vim.api.nvim_get_hl(0, { name = "ErrorMsg" }).fg, 0xe03f32, "ErrorMsg uses vivid red")
   assert_eq(
@@ -351,6 +362,9 @@ local function run()
     0xe03f32,
     "DiagnosticError uses vivid red"
   )
+  local unnecessary_highlight = vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" })
+  assert_eq(unnecessary_highlight.fg, 0x5c6370, "unnecessary code uses slate grey")
+  assert_eq(unnecessary_highlight.nocombine, nil, "unnecessary code preserves syntax styles")
   assert_eq(vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg, 0xe0af68, "WarningMsg uses yellow")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" }).fg,
@@ -509,6 +523,7 @@ local function run()
   require("vulkanite").load({
     on_colors = function(colors)
       colors.error = "#ff0000"
+      colors.unnecessary = "#808080"
     end,
     on_highlights = function(groups, colors)
       groups.VulkaniteOverrideProbe = { fg = colors.error }
@@ -524,12 +539,22 @@ local function run()
     0xff0000,
     "on_highlights sees colors"
   )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" }).fg,
+    0x808080,
+    "on_colors mutates unnecessary diagnostics independently"
+  )
   require("vulkanite").load({})
   assert_unset("VulkaniteOverrideProbe", "reload clears callback-defined highlights")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg,
     0xe03f32,
     "reload restores default semantic colors"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" }).fg,
+    0x5c6370,
+    "reload restores the default unnecessary color"
   )
 
   reset_vulkanite()
@@ -602,6 +627,10 @@ local function run()
   assert_unset("WhichKeyFloat", "obsolete which-key group is not defined")
   assert_unset("SnacksPickerGitHubIssue", "obsolete Snacks GitHub issue group is not defined")
   assert_eq(vim.api.nvim_get_hl(0, { name = "LazyValue" }).fg, 0xe05f64, "LazyValue uses value red")
+  local selected_buffer = vim.api.nvim_get_hl(0, { name = "BufferLineBufferSelected" })
+  assert_eq(selected_buffer.fg, 0x4fa3a6, "selected bufferline buffer uses the secondary accent")
+  assert_eq(selected_buffer.bold, true, "selected bufferline buffer remains bold")
+  assert_eq(selected_buffer.italic, true, "selected bufferline buffer remains italic")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "LspKindUnit" }).fg,
     0xe05f64,

@@ -91,6 +91,7 @@ Vulkanite automatically detects supported plugins installed through lazy.nvim or
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [blink.cmp](https://github.com/saghen/blink.cmp)
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
+- [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) and [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [noice.nvim](https://github.com/folke/noice.nvim) and [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [snacks.nvim](https://github.com/folke/snacks.nvim)
