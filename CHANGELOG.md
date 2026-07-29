@@ -7,6 +7,10 @@ release versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Changed
+
+- Highlight active tabs with the primary blue accent and LSP-tagged unnecessary code with comment grey.
+
 ## [0.1.0] - 2026-07-19
 
 ### Added

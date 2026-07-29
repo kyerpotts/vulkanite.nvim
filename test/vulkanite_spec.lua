@@ -79,6 +79,7 @@ local integration_probe_groups = {
   "BlinkCmpLabelMatch",
   "WhichKey",
   "LazyH1",
+  "BufferLineBufferSelected",
   "NeoTreeDirectoryName",
   "NvimTreeFolderName",
   "NoiceCmdlinePopup",
@@ -190,6 +191,11 @@ local function run()
     vim.api.nvim_get_hl(0, { name = "CursorLineNr" }).fg,
     0x8fe0fa,
     "CursorLineNr marks the cursor line with the accent"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "TabLineSel" }).fg,
+    0x8fe0fa,
+    "TabLineSel marks the active tab with the accent"
   )
   local search_highlight = vim.api.nvim_get_hl(0, { name = "Search", link = false })
   assert_eq(search_highlight.fg, 0x151b1e, "Search uses dark text")
@@ -350,6 +356,11 @@ local function run()
     vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg,
     0xe03f32,
     "DiagnosticError uses vivid red"
+  )
+  assert_eq(
+    vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" }).fg,
+    0x8e969a,
+    "unnecessary code uses comment grey"
   )
   assert_eq(vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg, 0xe0af68, "WarningMsg uses yellow")
   assert_eq(
@@ -602,6 +613,10 @@ local function run()
   assert_unset("WhichKeyFloat", "obsolete which-key group is not defined")
   assert_unset("SnacksPickerGitHubIssue", "obsolete Snacks GitHub issue group is not defined")
   assert_eq(vim.api.nvim_get_hl(0, { name = "LazyValue" }).fg, 0xe05f64, "LazyValue uses value red")
+  local selected_buffer = vim.api.nvim_get_hl(0, { name = "BufferLineBufferSelected" })
+  assert_eq(selected_buffer.fg, 0x8fe0fa, "selected bufferline buffer uses the accent")
+  assert_eq(selected_buffer.bold, true, "selected bufferline buffer remains bold")
+  assert_eq(selected_buffer.italic, true, "selected bufferline buffer remains italic")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "LspKindUnit" }).fg,
     0xe05f64,

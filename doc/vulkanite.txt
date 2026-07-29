@@ -143,6 +143,7 @@ gitsigns              gitsigns.nvim
  blink                 blink.cmp
  which_key             which-key.nvim
  lazy                  lazy.nvim
+ bufferline            bufferline.nvim
  neo_tree              neo-tree.nvim
  nvim_tree             nvim-tree.lua
  noice                 noice.nvim
