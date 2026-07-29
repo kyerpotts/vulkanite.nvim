@@ -364,7 +364,7 @@ local function run()
   )
   local unnecessary_highlight = vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" })
   assert_eq(unnecessary_highlight.fg, 0x5c6370, "unnecessary code uses slate grey")
-  assert_eq(unnecessary_highlight.nocombine, true, "unnecessary code suppresses undercurls")
+  assert_eq(unnecessary_highlight.nocombine, nil, "unnecessary code preserves syntax styles")
   assert_eq(vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg, 0xe0af68, "WarningMsg uses yellow")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" }).fg,

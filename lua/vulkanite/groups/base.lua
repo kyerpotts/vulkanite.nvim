@@ -202,7 +202,7 @@ function M.setup(colors, opts)
     -- Diagnostic success text from Neovim diagnostics.
     DiagnosticOk = { fg = colors.diagnostic.ok },
     -- Code marked unnecessary or unused by a diagnostic source.
-    DiagnosticUnnecessary = { fg = colors.diagnostic.unnecessary, nocombine = true },
+    DiagnosticUnnecessary = { fg = colors.diagnostic.unnecessary },
     -- Undercurl for ranges covered by error diagnostics.
     DiagnosticUnderlineError = { undercurl = true, sp = colors.diagnostic.error },
     -- Undercurl for ranges covered by warning diagnostics.
