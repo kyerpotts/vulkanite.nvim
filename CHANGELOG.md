@@ -7,9 +7,17 @@ release versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-07-29
+
+### Added
+
+- Added automatic and explicit highlight integration for bufferline.nvim.
+- Added an independently configurable `unnecessary` diagnostic color.
+
 ### Changed
 
-- Highlight active tabs with the secondary accent and render LSP-tagged unnecessary code in subdued slate grey.
+- Active native tabs and selected bufferline buffers now use the secondary teal accent.
+- LSP-tagged unnecessary code now uses subdued slate grey while preserving its syntax styling.
 
 ## [0.1.0] - 2026-07-19
 
@@ -21,5 +29,6 @@ release versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Bundled lualine theme, named 16-color palette, and complete Base16 compatibility mapping.
 - Neovim help under `:help vulkanite`.
 
-[Unreleased]: https://github.com/kyerpotts/vulkanite.nvim/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/kyerpotts/vulkanite.nvim/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/kyerpotts/vulkanite.nvim/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/kyerpotts/vulkanite.nvim/releases/tag/v0.1.0

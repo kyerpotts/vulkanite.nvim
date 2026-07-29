@@ -158,5 +158,5 @@ You can also read [`doc/vulkanite.txt`](doc/vulkanite.txt) directly.
 ## Project
 
 Want to help? Read the [contributing guide](docs/CONTRIBUTING.md). You can also
-find the [changelog](CHANGELOG.md), [release notes](docs/release-notes-v0.1.0.md),
+find the [changelog](CHANGELOG.md), [latest release notes](docs/release-notes-v0.1.1.md),
 and [MIT license](LICENSE) here.
