@@ -352,7 +352,7 @@ local function run()
   )
   assert_eq(
     semantic_colors.roles.diagnostic.unnecessary,
-    "#8e969a",
+    "#5c6370",
     "unnecessary diagnostic role is derived centrally"
   )
   assert_eq(semantic_colors.roles.accent.icon, "#9083B9", "icon role is derived centrally")
@@ -362,11 +362,9 @@ local function run()
     0xe03f32,
     "DiagnosticError uses vivid red"
   )
-  assert_eq(
-    vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" }).fg,
-    0x8e969a,
-    "unnecessary code uses comment grey"
-  )
+  local unnecessary_highlight = vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" })
+  assert_eq(unnecessary_highlight.fg, 0x5c6370, "unnecessary code uses slate grey")
+  assert_eq(unnecessary_highlight.nocombine, true, "unnecessary code suppresses undercurls")
   assert_eq(vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg, 0xe0af68, "WarningMsg uses yellow")
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" }).fg,
@@ -555,7 +553,7 @@ local function run()
   )
   assert_eq(
     vim.api.nvim_get_hl(0, { name = "DiagnosticUnnecessary" }).fg,
-    0x8e969a,
+    0x5c6370,
     "reload restores the default unnecessary color"
   )
 

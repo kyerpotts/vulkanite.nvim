@@ -104,7 +104,7 @@ local function resolve(opts, apply_overrides)
     hint = p.muted_blue,
     selection = p.slate_grey,
     ok = p.bright_green,
-    unnecessary = p.comment_grey,
+    unnecessary = p.slate_grey,
     accent = p.bright_blue,
     sky_blue = p.sky_blue,
     purple = p.purple,
