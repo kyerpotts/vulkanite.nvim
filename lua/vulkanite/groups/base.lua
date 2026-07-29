@@ -100,7 +100,7 @@ function M.setup(colors, opts)
     -- Background fill after tab-page labels.
     TabLineFill = { fg = colors.ui.gutter, bg = colors.ui.bg_alt },
     -- Active tab-page label.
-    TabLineSel = { fg = colors.accent.primary, bg = colors.ui.bg_alt },
+    TabLineSel = { fg = colors.accent.secondary, bg = colors.ui.bg_alt },
     -- Titles for buffers, quickfix lists, and plugin headings.
     Title = { fg = colors.accent.primary },
     -- Legacy vertical split separator.
@@ -202,7 +202,7 @@ function M.setup(colors, opts)
     -- Diagnostic success text from Neovim diagnostics.
     DiagnosticOk = { fg = colors.diagnostic.ok },
     -- Code marked unnecessary or unused by a diagnostic source.
-    DiagnosticUnnecessary = { fg = colors.ui.comment },
+    DiagnosticUnnecessary = { fg = colors.diagnostic.unnecessary },
     -- Undercurl for ranges covered by error diagnostics.
     DiagnosticUnderlineError = { undercurl = true, sp = colors.diagnostic.error },
     -- Undercurl for ranges covered by warning diagnostics.

@@ -9,7 +9,7 @@ release versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- Highlight active tabs with the primary blue accent and LSP-tagged unnecessary code with comment grey.
+- Highlight active tabs with the secondary accent and give LSP-tagged unnecessary code its own semantic color.
 
 ## [0.1.0] - 2026-07-19
 

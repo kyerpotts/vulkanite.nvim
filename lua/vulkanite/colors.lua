@@ -42,6 +42,7 @@ local function derive_roles(colors)
     info = colors.info,
     hint = colors.hint,
     ok = colors.ok,
+    unnecessary = colors.unnecessary,
   }
   local diff = {
     add = colors.ok,
@@ -74,6 +75,7 @@ local function derive_roles(colors)
       info = diagnostic.info,
       hint = diagnostic.hint,
       ok = diagnostic.ok,
+      unnecessary = diagnostic.unnecessary,
       accent = accent.primary,
       accent_secondary = accent.secondary,
       match = accent.match,
@@ -102,6 +104,7 @@ local function resolve(opts, apply_overrides)
     hint = p.muted_blue,
     selection = p.slate_grey,
     ok = p.bright_green,
+    unnecessary = p.comment_grey,
     accent = p.bright_blue,
     sky_blue = p.sky_blue,
     purple = p.purple,
